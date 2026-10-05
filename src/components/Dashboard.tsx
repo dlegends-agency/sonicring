@@ -35,10 +35,10 @@ export function Dashboard({ onCtaClick }: DashboardProps) {
         <div className="checklist-row">
           <div className="checklist-row__media">
             <img
-              src="/images/ai-meeting.webp"
-              alt="AI CEO leading a meeting with AI Sales, Marketing, Designer, Receptionist, Scheduler, Support, and Research employees around a table"
-              width={1680}
-              height={940}
+              src="/images/sonicring-ai-meeting.webp"
+              alt="AI CEO leading a SonicRing meeting with AI Sales, Marketing, Designer, Receptionist, Scheduler, Support, and Research employees around a table"
+              width={1672}
+              height={941}
             />
           </div>
           <ul className="pain-list pain-list--positive checklist-row__list">
