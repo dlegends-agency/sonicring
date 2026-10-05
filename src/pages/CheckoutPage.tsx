@@ -102,7 +102,7 @@ export function CheckoutPage() {
       <div className="checkout__glow" aria-hidden="true" />
       <div className="checkout__inner">
         <header className="checkout__header">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <h1 className="checkout__title">{checkoutSettings.page_title}</h1>
           <p className="checkout__sub">
             {name
@@ -270,7 +270,7 @@ export function CheckoutSuccessPage() {
     return (
       <main className="checkout thankyou">
         <div className="thankyou__inner">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <p className="thankyou__lead">Confirming your purchase…</p>
         </div>
       </main>
@@ -281,7 +281,7 @@ export function CheckoutSuccessPage() {
     <main className="checkout thankyou">
       <div className="checkout__glow" aria-hidden="true" />
       <div className="thankyou__inner">
-        <p className="checkout__brand">Boss Lab AI</p>
+        <p className="checkout__brand">SonicRing</p>
         <div className="thankyou__icon" aria-hidden="true">
           ✓
         </div>
@@ -292,7 +292,7 @@ export function CheckoutSuccessPage() {
           Congratulations — let&apos;s work together for growth!
         </p>
         <p className="thankyou__copy">
-          Thank you for joining BOSS LAB AI. Your AI workforce is being
+          Thank you for joining SONICRING. Your AI workforce is being
           prepared, and you&apos;re one step closer to running your business
           with smarter automation.
         </p>
@@ -326,7 +326,7 @@ export function CheckoutCancelPage() {
   return (
     <main className="checkout checkout--status">
       <div className="checkout__inner checkout__status-card">
-        <p className="checkout__brand">Boss Lab AI</p>
+        <p className="checkout__brand">SonicRing</p>
         <h1 className="checkout__title">Checkout canceled</h1>
         <p className="checkout__sub">
           No charge was made. You can pick a plan whenever you&apos;re ready.

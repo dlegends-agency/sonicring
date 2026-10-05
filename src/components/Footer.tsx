@@ -9,7 +9,7 @@ export function Footer() {
         <img
           className="footer__brand"
           src="/images/bosslabai-logo.webp"
-          alt="Boss Lab AI"
+          alt="SonicRing"
           width={2048}
           height={682}
         />
@@ -23,7 +23,7 @@ export function Footer() {
         </nav>
 
         <p className="footer__copy">
-          © {year} Boss Lab AI. All Rights Reserved.
+          © {year} SonicRing. All Rights Reserved.
         </p>
 
         <p className="footer__note">

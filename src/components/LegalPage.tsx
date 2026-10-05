@@ -14,7 +14,7 @@ export function LegalPage({ title, updated, children }: LegalPageProps) {
       <header className="legal-header">
         <div className="section-inner legal-header__inner">
           <Link to="/" className="legal-header__brand">
-            Boss Lab AI
+            SonicRing
           </Link>
           <Link to="/" className="legal-header__back">
             ← Back to home

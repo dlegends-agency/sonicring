@@ -8,7 +8,7 @@ export type GeneralSettings = {
 }
 
 export const DEFAULT_GENERAL_SETTINGS: GeneralSettings = {
-  business_name: 'Boss Lab AI',
+  business_name: 'SonicRing',
   support_email: 'support@bosslabai.com',
   support_phone: '',
   business_address: '',

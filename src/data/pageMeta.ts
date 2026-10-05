@@ -8,34 +8,34 @@ export type PageMetaEntry = {
 export const pageMetaList: PageMetaEntry[] = [
   {
     path: '/',
-    title: 'Boss Lab AI — Your AI Business Team',
+    title: 'SonicRing — Your AI Business Team',
     description:
-      'Boss Lab AI gives local businesses a full AI workforce — answering calls, capturing leads, booking appointments, and following up automatically, 24/7.',
+      'SonicRing gives local businesses a full AI workforce — answering calls, capturing leads, booking appointments, and following up automatically, 24/7.',
   },
   {
     path: '/privacy-policy',
-    title: 'Privacy Policy — Boss Lab AI',
+    title: 'Privacy Policy — SonicRing',
     description:
-      'Read how Boss Lab AI collects, uses, and protects your information across our website and AI business tools.',
+      'Read how SonicRing collects, uses, and protects your information across our website and AI business tools.',
   },
   {
     path: '/terms-and-conditions',
-    title: 'Terms & Conditions — Boss Lab AI',
+    title: 'Terms & Conditions — SonicRing',
     description:
-      'Review the terms and conditions that govern your use of the Boss Lab AI website and services.',
+      'Review the terms and conditions that govern your use of the SonicRing website and services.',
   },
   {
     path: '/report-audit',
-    title: 'SEO & Site Audit Report — Boss Lab AI',
+    title: 'SEO & Site Audit Report — SonicRing',
     description:
-      'A live audit of Boss Lab AI’s own site: meta tags, Open Graph, crawlability, tracking setup, and PageSpeed Insights results.',
+      'A live audit of SonicRing’s own site: meta tags, Open Graph, crawlability, tracking setup, and PageSpeed Insights results.',
   },
 ]
 
 export const defaultPageMeta: PageMetaEntry = {
   path: '',
-  title: 'Boss Lab AI',
-  description: 'Boss Lab AI — an AI workforce for local businesses.',
+  title: 'SonicRing',
+  description: 'SonicRing — an AI workforce for local businesses.',
   noindex: true,
 }
 

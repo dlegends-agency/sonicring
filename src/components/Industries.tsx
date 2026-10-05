@@ -19,7 +19,7 @@ export function Industries() {
 
         <div className="problem__copy">
           <p>
-            BossLab AI is designed for local businesses that depend on calls,
+            SonicRing is designed for local businesses that depend on calls,
             leads, appointments, and customer relationships.
           </p>
         </div>
@@ -54,7 +54,7 @@ export function Industries() {
         <div className="problem__answer">
           <p>
             If customers call you, message you, book with you, or ask
-            questions, BossLab AI can help keep the conversation moving.
+            questions, SonicRing can help keep the conversation moving.
           </p>
         </div>
       </div>

@@ -19,7 +19,7 @@ export function AiTeam() {
             you focus on running the business?
           </p>
           <p>
-            BossLab AI connects specialized AI capabilities for reception,
+            SonicRing connects specialized AI capabilities for reception,
             sales, marketing, support, research, scheduling, and operations
             into one business workforce.
           </p>

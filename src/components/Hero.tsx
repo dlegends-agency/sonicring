@@ -17,7 +17,7 @@ export function Hero({ onCtaClick }: HeroProps) {
           >
             <img
               src="/images/bosslabai-logo.webp"
-              alt="Boss Lab AI"
+              alt="SonicRing"
               width={2048}
               height={682}
             />
@@ -46,7 +46,7 @@ export function Hero({ onCtaClick }: HeroProps) {
             className="hero__copy reveal-item"
             style={{ '--d': '320ms' } as CSSProperties}
           >
-            BossLab AI turns scattered business tools into a coordinated AI
+            SonicRing turns scattered business tools into a coordinated AI
             workforce—visible, accountable and built to move customers from
             inquiry to action.
           </p>

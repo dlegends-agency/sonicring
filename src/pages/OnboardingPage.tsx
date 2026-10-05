@@ -225,7 +225,7 @@ export function OnboardingPage() {
     return (
       <main className="checkout thankyou">
         <div className="thankyou__inner">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <p className="thankyou__lead">Loading your setup…</p>
         </div>
       </main>
@@ -236,7 +236,7 @@ export function OnboardingPage() {
     return (
       <main className="checkout checkout--status">
         <div className="checkout__inner checkout__status-card">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <h1 className="checkout__title">We couldn&apos;t find your order</h1>
           <p className="checkout__sub">
             Use the link from your confirmation email, or contact support.
@@ -254,7 +254,7 @@ export function OnboardingPage() {
       <main className="checkout thankyou">
         <div className="checkout__glow" aria-hidden="true" />
         <div className="thankyou__inner">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <h1 className="thankyou__title">Building Your AI Team...</h1>
           <ul className="ob-build-list">
             {BUILD_STEPS.map((label, index) => (
@@ -276,7 +276,7 @@ export function OnboardingPage() {
       <main className="checkout thankyou">
         <div className="checkout__glow" aria-hidden="true" />
         <div className="thankyou__inner">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <div className="thankyou__icon" aria-hidden="true">
             ✓
           </div>
@@ -296,7 +296,7 @@ export function OnboardingPage() {
     <main className="checkout thankyou">
       <div className="checkout__glow" aria-hidden="true" />
       <div className="thankyou__inner ob-inner">
-        <p className="checkout__brand">Boss Lab AI</p>
+        <p className="checkout__brand">SonicRing</p>
         <ProgressBar current={phase === 'business' ? 1 : phase === 'goals' ? 2 : 3} />
 
         {phase === 'business' ? (

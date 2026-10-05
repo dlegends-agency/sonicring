@@ -13,17 +13,17 @@ const PLANS: Record<
   { name: string; amountCents: number; description: string }
 > = {
   starter: {
-    name: "Boss Lab Starter",
+    name: "SonicRing Starter",
     amountCents: 19900,
     description: "1 business · 2 users · 5 AI employees",
   },
   growth: {
-    name: "Boss Lab Growth",
+    name: "SonicRing Growth",
     amountCents: 39900,
     description: "3 businesses · 5 users · 10 AI employees",
   },
   pro: {
-    name: "Boss Lab Pro",
+    name: "SonicRing Pro",
     amountCents: 79900,
     description: "10 businesses · 15 users · 25 AI employees",
   },

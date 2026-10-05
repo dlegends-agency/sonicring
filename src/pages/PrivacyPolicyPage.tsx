@@ -4,7 +4,7 @@ export function PrivacyPolicyPage() {
   return (
     <LegalPage title="Privacy Policy" updated="August 4, 2026">
       <p>
-        Boss Lab AI (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) respects your
+        SonicRing (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) respects your
         privacy. This Privacy Policy explains how we collect, use, disclose, and
         protect information when you visit our website, submit an opt-in form, or
         use our services.
@@ -122,7 +122,7 @@ export function PrivacyPolicyPage() {
       <h2>12. Contact Us</h2>
       <p>
         If you have questions about this Privacy Policy or our data practices,
-        contact Boss Lab AI through the contact methods provided on our website.
+        contact SonicRing through the contact methods provided on our website.
       </p>
     </LegalPage>
   )

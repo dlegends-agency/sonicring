@@ -924,7 +924,7 @@ export function AutomationEditorPage() {
           : pendingAction === 'zapier_webhook'
             ? { webhook_url: '' }
             : {
-                email_subject: 'Welcome to Boss Lab AI',
+                email_subject: 'Welcome to SonicRing',
                 email_body:
                   'Thanks for joining. Your AI team is ready to get started.',
               }

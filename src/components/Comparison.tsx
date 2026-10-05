@@ -20,7 +20,7 @@ export function Comparison() {
 
         <div className="comparison__grid">
           <div className="comparison__col comparison__col--muted">
-            <span className="comparison__badge">Before BossLab AI</span>
+            <span className="comparison__badge">Before SonicRing</span>
             <h3>
               More Stress.
               <br />
@@ -44,7 +44,7 @@ export function Comparison() {
 
           <div className="comparison__col comparison__col--accent">
             <span className="comparison__badge comparison__badge--accent">
-              After BossLab AI
+              After SonicRing
             </span>
             <h3>
               More Time.

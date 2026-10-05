@@ -5,4 +5,4 @@ Disallow: /checkout
 Disallow: /onboarding
 Disallow: /mission-control
 
-Sitemap: https://bosslab-funnel-website.pages.dev/sitemap.xml
+Sitemap: https://sonicring.com/sitemap.xml
