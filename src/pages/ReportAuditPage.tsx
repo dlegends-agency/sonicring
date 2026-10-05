@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { loadPixelSettings, type PixelTrackingSettings } from '../lib/pixelSettings'
+import { SITE_GA_ID } from '../data/siteConfig'
 import './ReportAuditPage.css'
 
 type Status = 'Open' | 'Review' | 'Fixed'
@@ -142,9 +143,17 @@ export function ReportAuditPage() {
   const gaId = settings?.google_analytics.measurement_id.trim() ?? ''
   const adsId = settings?.google_ads.conversion_id.trim() ?? ''
   const loaded = settings !== null
-  const configuredCount = [fbId, gaId, adsId].filter(Boolean).length
+  // GA4 is installed site-wide via the Google tag in index.html.
+  const configuredCount = [fbId, SITE_GA_ID, adsId].filter(Boolean).length
 
-  const trackers = [
+  const trackers: {
+    tool: string
+    id: string
+    source: string
+    configured: boolean
+    statusLabel?: string
+    notes: string
+  }[] = [
     {
       tool: 'Facebook Pixel',
       id: fbId || 'Set via /admin/settings',
@@ -154,10 +163,14 @@ export function ReportAuditPage() {
     },
     {
       tool: 'Google Analytics (GA4)',
-      id: gaId || 'Set via /admin/settings',
+      id: SITE_GA_ID,
       source: 'googletagmanager.com/gtag/js',
-      configured: Boolean(gaId),
-      notes: 'Fires page_view, generate_lead, and purchase events once a measurement ID is saved.',
+      configured: true,
+      statusLabel: 'Active',
+      notes:
+        gaId && gaId !== SITE_GA_ID
+          ? `Google tag in index.html on every page (automatic page_view). /admin/settings also sends events to ${gaId}.`
+          : 'Google tag in index.html on every page (automatic page_view). Leave the /admin/settings GA4 field empty to avoid double-counting.',
     },
     {
       tool: 'Google Ads',
@@ -165,6 +178,14 @@ export function ReportAuditPage() {
       source: 'shares gtag.js with GA4',
       configured: Boolean(adsId),
       notes: 'Fires conversion events for leads and purchases once a conversion ID and labels are saved.',
+    },
+    {
+      tool: 'Cloudflare Web Analytics',
+      id: 'beacon.min.js',
+      source: 'https://static.cloudflareinsights.com/beacon.min.js',
+      configured: true,
+      statusLabel: 'Active',
+      notes: 'Detected on production. Privacy-friendly page analytics via Cloudflare.',
     },
   ]
 
@@ -176,9 +197,9 @@ export function ReportAuditPage() {
     {
       area: 'Tracking — pixel configuration',
       issue:
-        'Facebook Pixel, GA4, and Google Ads code is implemented, but all IDs are empty by default.',
+        'Facebook Pixel and Google Ads code is implemented, but their IDs are empty by default. GA4 is installed site-wide.',
       resolution: loaded
-        ? `${configuredCount}/3 trackers configured in /admin/settings. Verify events fire in each platform's test tool.`
+        ? `${configuredCount}/3 trackers configured (GA4 site-wide; Facebook Pixel and Google Ads in /admin/settings). Verify events fire in each platform's test tool.`
         : 'Enter live pixel / measurement / conversion IDs in /admin/settings, then verify events in each platform’s test tool.',
       status: trackingStatus,
     },
@@ -275,7 +296,8 @@ export function ReportAuditPage() {
       <section className="ra-section">
         <h2>Tracking &amp; Analytics Codes</h2>
         <p className="ra-section__sub">
-          Live status, read from /admin/settings each time this page loads.
+          Facebook Pixel and Google Ads status is read live from
+          /admin/settings; GA4 and Cloudflare Web Analytics run site-wide.
         </p>
         <div className="ra-table-wrap">
           <table className="ra-table">
@@ -306,7 +328,8 @@ export function ReportAuditPage() {
                           : 'ra-badge ra-badge--review'
                       }
                     >
-                      {row.configured ? 'Configured' : 'Not configured'}
+                      {row.statusLabel ??
+                        (row.configured ? 'Configured' : 'Not configured')}
                     </span>
                   </td>
                   <td>{row.notes}</td>
