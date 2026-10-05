@@ -8,10 +8,10 @@ export function Footer() {
       <div className="footer__inner section-inner">
         <img
           className="footer__brand"
-          src="/images/bosslabai-logo.webp"
+          src="/images/sonicring-logo.webp"
           alt="SonicRing"
-          width={2048}
-          height={682}
+          width={1224}
+          height={410}
         />
 
         <nav className="footer__links" aria-label="Legal">

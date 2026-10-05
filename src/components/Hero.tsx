@@ -16,10 +16,10 @@ export function Hero({ onCtaClick }: HeroProps) {
             style={{ '--d': '0ms' } as CSSProperties}
           >
             <img
-              src="/images/bosslabai-logo.webp"
+              src="/images/sonicring-logo.webp"
               alt="SonicRing"
-              width={2048}
-              height={682}
+              width={1224}
+              height={410}
             />
           </div>
           <p
@@ -62,7 +62,7 @@ export function Hero({ onCtaClick }: HeroProps) {
             className="hero__image"
             src="/images/ai3doffice.webp"
             alt=""
-            width={2048}
+            width={1224}
             height={1152}
           />
         </div>
