@@ -1,10 +1,47 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as
+  | string
+  | undefined
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing VITE_SUPABASE_URL or VITE_SUPABASE_ANON_KEY')
+/** True when Supabase env vars are set; otherwise the database is disabled. */
+export const isDatabaseEnabled = Boolean(supabaseUrl && supabaseAnonKey)
+
+const DISABLED_RESULT = {
+  data: null,
+  error: { message: 'Database is disabled', code: 'DB_DISABLED' },
+  count: null,
+  status: 503,
+  statusText: 'Database is disabled',
+}
+
+/**
+ * Stand-in client used when Supabase isn't configured. Any chain of calls
+ * (e.g. `supabase.from('x').select().eq(...)`, `supabase.functions.invoke`)
+ * resolves to `{ data: null, error }` instead of crashing the site.
+ */
+function createDisabledClient(): SupabaseClient {
+  const handler: ProxyHandler<() => void> = {
+    get(_target, prop) {
+      if (prop === 'then') {
+        return (resolve: (value: typeof DISABLED_RESULT) => unknown) =>
+          resolve(DISABLED_RESULT)
+      }
+      return chain
+    },
+    apply() {
+      return chain
+    },
+  }
+  const chain: unknown = new Proxy(() => {}, handler)
+  return chain as SupabaseClient
+}
+
+if (!isDatabaseEnabled) {
+  console.warn(
+    'Supabase is not configured (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY); database features are disabled.',
+  )
 }
 
 export type Contact = {
@@ -211,4 +248,6 @@ export type AutomationRun = {
 /** @deprecated Use Contact */
 export type Lead = Contact
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase: SupabaseClient = isDatabaseEnabled
+  ? createClient(supabaseUrl as string, supabaseAnonKey as string)
+  : createDisabledClient()
