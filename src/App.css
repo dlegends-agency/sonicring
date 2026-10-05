@@ -830,8 +830,8 @@
 .platform-niches__media {
   position: relative;
   margin-top: 3rem;
-  padding-top: 45.28%;
-  background: url('/images/aimissioncontrol.webp') top center / cover no-repeat;
+  padding-top: 56.28%; /* 941 / 1672 image aspect ratio */
+  background: url('/images/sonicring-mission-control.webp') top center / cover no-repeat;
 }
 
 .platform-niches__media::before {
