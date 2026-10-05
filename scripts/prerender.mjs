@@ -40,7 +40,8 @@ async function main() {
     // If baked into the static HTML they run before the app sets up their
     // globals (e.g. `fbq is not defined`); the app re-injects them anyway.
     await page.evaluate(() => {
-      for (const script of document.querySelectorAll('script[src]')) {
+      // Scripts marked data-static ship in index.html itself and are kept.
+      for (const script of document.querySelectorAll('script[src]:not([data-static])')) {
         const src = script.getAttribute('src') || ''
         if (/^(https?:)?\/\//.test(src)) script.remove()
       }
