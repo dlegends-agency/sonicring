@@ -44,6 +44,12 @@ async function main() {
         const src = script.getAttribute('src') || ''
         if (/^(https?:)?\/\//.test(src)) script.remove()
       }
+      // Sections start hidden (.reveal) until scrolled into view. Mark them
+      // all visible in the snapshot so the page is readable before — or
+      // without — the JS bundle; the app re-renders and re-animates on load.
+      for (const el of document.querySelectorAll('.reveal')) {
+        el.classList.add('is-visible')
+      }
     })
 
     const html = await page.content()
