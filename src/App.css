@@ -212,6 +212,9 @@
   width: 100%;
   height: auto;
   border-radius: 1.25rem;
+  /* Fade the left edge so hero copy overlapping the image stays readable */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 20%, #000 42%);
+  mask-image: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 20%, #000 42%);
 }
 
 /* ——— Starfield (scoped to individual sections) ——— */
@@ -2787,6 +2790,8 @@
 
   .hero__image {
     width: 100%;
+    -webkit-mask-image: none;
+    mask-image: none;
   }
 
   .hero__title {

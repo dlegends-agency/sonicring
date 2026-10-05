@@ -60,10 +60,10 @@ export function Hero({ onCtaClick }: HeroProps) {
         <div className="hero__image-wrap" aria-hidden="true">
           <img
             className="hero__image"
-            src="/images/ai3doffice.webp"
+            src="/images/sonicring-hero.webp"
             alt=""
-            width={1224}
-            height={1152}
+            width={1672}
+            height={941}
           />
         </div>
       </div>
