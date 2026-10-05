@@ -126,10 +126,10 @@ export function OptinModal({ open, onClose }: OptinModalProps) {
           <span aria-hidden="true">×</span>
         </button>
 
-        <p className="optin-brand">Boss Lab AI</p>
+        <p className="optin-brand">SonicRing</p>
         <p className="optin-kicker">Be part of what&apos;s next!</p>
         <h2 id={titleId} className="optin-title">
-          Join The BossLab AI <span className="accent">Waitlist</span>
+          Join The SonicRing <span className="accent">Waitlist</span>
         </h2>
         <p className="optin-sub">
           Fill out the form below and be the first to know when we launch.
@@ -233,7 +233,7 @@ export function OptinModal({ open, onClose }: OptinModalProps) {
               d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5zm-3 8V6a3 3 0 1 1 6 0v3H9zm3 4a1.5 1.5 0 0 1 .75 2.8V18h-1.5v-2.2A1.5 1.5 0 0 1 12 13z"
             />
           </svg>
-          No spam. We will only send important BossLab AI updates.
+          No spam. We will only send important SonicRing updates.
         </p>
       </div>
     </div>

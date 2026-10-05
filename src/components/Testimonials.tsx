@@ -70,7 +70,7 @@ export function Testimonials() {
           Trusted by Local <span className="accent">Business Owners</span>
         </h2>
         <p className="section-copy">
-          See what owners are saying about running their AI team with Boss Lab —
+          See what owners are saying about running their AI team with SonicRing —
           more follow-ups, fewer missed calls, less busywork.
         </p>
       </div>

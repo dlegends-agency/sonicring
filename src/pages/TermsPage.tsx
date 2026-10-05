@@ -5,14 +5,14 @@ export function TermsPage() {
     <LegalPage title="Terms & Conditions" updated="August 4, 2026">
       <p>
         These Terms &amp; Conditions (&quot;Terms&quot;) govern your access to
-        and use of the Boss Lab AI website and related services (the
+        and use of the SonicRing website and related services (the
         &quot;Services&quot;). By accessing or using the Services, you agree to
         these Terms. If you do not agree, do not use the Services.
       </p>
 
       <h2>1. Who We Are</h2>
       <p>
-        Boss Lab AI provides software and related tools that help businesses
+        SonicRing provides software and related tools that help businesses
         automate marketing, communications, lead follow-up, and operational tasks
         using AI-powered employees and dashboards.
       </p>
@@ -35,8 +35,8 @@ export function TermsPage() {
       <h2>4. Opt-In Forms and Communications</h2>
       <p>
         By submitting your name and email through our opt-in forms, you consent
-        to receive the requested materials and related communications about Boss
-        Lab AI. You may unsubscribe from marketing emails at any time using the
+        to receive the requested materials and related communications about
+        SonicRing. You may unsubscribe from marketing emails at any time using the
         link in those emails or by contacting us.
       </p>
 
@@ -72,7 +72,7 @@ export function TermsPage() {
       <h2>7. Intellectual Property</h2>
       <p>
         The Services, including software, branding, text, graphics, and other
-        content, are owned by Boss Lab AI or its licensors and are protected by
+        content, are owned by SonicRing or its licensors and are protected by
         intellectual property laws. You receive a limited, non-exclusive,
         non-transferable right to use the Services as permitted by these Terms.
         All brands shown on this site belong to their respective owners.
@@ -109,7 +109,7 @@ export function TermsPage() {
 
       <h2>11. Limitation of Liability</h2>
       <p>
-        To the fullest extent permitted by law, Boss Lab AI and its affiliates
+        To the fullest extent permitted by law, SonicRing and its affiliates
         will not be liable for any indirect, incidental, special, consequential,
         or punitive damages, or any loss of profits, data, goodwill, or business
         opportunities, arising from your use of the Services. Our total liability
@@ -119,7 +119,7 @@ export function TermsPage() {
 
       <h2>12. Indemnification</h2>
       <p>
-        You agree to indemnify and hold harmless Boss Lab AI and its officers,
+        You agree to indemnify and hold harmless SonicRing and its officers,
         employees, and agents from claims, damages, losses, and expenses
         (including reasonable attorneys&apos; fees) arising out of your use of
         the Services, your content, or your violation of these Terms.
@@ -143,7 +143,7 @@ export function TermsPage() {
 
       <h2>15. Governing Law</h2>
       <p>
-        These Terms are governed by the laws applicable to Boss Lab AI&apos;s
+        These Terms are governed by the laws applicable to SonicRing&apos;s
         principal place of business, without regard to conflict-of-law rules.
         Courts in that jurisdiction will have exclusive venue for disputes,
         except where prohibited by law.
@@ -151,7 +151,7 @@ export function TermsPage() {
 
       <h2>16. Contact</h2>
       <p>
-        Questions about these Terms &amp; Conditions can be sent to Boss Lab AI
+        Questions about these Terms &amp; Conditions can be sent to SonicRing
         through the contact methods provided on our website.
       </p>
     </LegalPage>

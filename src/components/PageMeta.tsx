@@ -78,7 +78,7 @@ export function PageMeta() {
             '@type': 'Organization',
             name: SITE_NAME,
             url: SITE_URL,
-            logo: `${SITE_URL}/images/bosslabai-logo.webp`,
+            logo: `${SITE_URL}/images/sonicring-logo.webp`,
           }
         : null,
     )

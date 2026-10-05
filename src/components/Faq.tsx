@@ -17,7 +17,7 @@ export function Faq() {
           Frequently Asked <span className="accent">Questions</span>
         </h2>
         <p className="section-copy">
-          Everything you need to know about starting your AI team with Boss Lab.
+          Everything you need to know about starting your AI team with SonicRing.
         </p>
 
         <div className="faq-list">

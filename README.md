@@ -1,6 +1,6 @@
-# Boss Lab AI — Opt-in Funnel
+# SonicRing — Opt-in Funnel
 
-React + Vite + TypeScript conversion of the [Boss Lab AI opt-in page](https://bosslab.autophagytools.com/optin/).
+React + Vite + TypeScript conversion of the [SonicRing opt-in page](https://bosslab.autophagytools.com/optin/).
 
 ## Scripts
 
@@ -16,7 +16,7 @@ npm run build
 - Problem / pain-point section
 - AI team + dashboard sections
 - Local business industries grid
-- Traditional hiring vs Boss Lab comparison
+- Traditional hiring vs SonicRing comparison
 - Features / pricing table
 - Opt-in modal (First Name + Email)
 

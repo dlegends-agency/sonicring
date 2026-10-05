@@ -65,7 +65,7 @@ Deno.serve(async (req: Request) => {
     const from =
       asString(body.from) ||
       Deno.env.get("RESEND_FROM_EMAIL") ||
-      "Boss Lab <onboarding@resend.dev>";
+      "SonicRing <onboarding@resend.dev>";
 
     if (!isValidEmail(to)) {
       return new Response(JSON.stringify({ error: "Enter a valid recipient email." }), {

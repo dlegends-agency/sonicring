@@ -83,19 +83,19 @@ const pages = [
   {
     name: 'Homepage',
     url: '/',
-    title: 'Boss Lab AI — Your AI Business Team',
-    description: 'Boss Lab AI gives local businesses a full AI workforce…',
+    title: 'SonicRing — Your AI Business Team',
+    description: 'SonicRing gives local businesses a full AI workforce…',
   },
   {
     name: 'Privacy Policy',
     url: '/privacy-policy',
-    title: 'Privacy Policy — Boss Lab AI',
-    description: 'Read how Boss Lab AI collects, uses, and protects your information…',
+    title: 'Privacy Policy — SonicRing',
+    description: 'Read how SonicRing collects, uses, and protects your information…',
   },
   {
     name: 'Terms & Conditions',
     url: '/terms-and-conditions',
-    title: 'Terms & Conditions — Boss Lab AI',
+    title: 'Terms & Conditions — SonicRing',
     description: 'Review the terms and conditions that govern your use…',
   },
 ]
@@ -197,14 +197,14 @@ export function ReportAuditPage() {
     <main className="report-audit">
       <header className="ra-header">
         <div className="ra-header__top">
-          <p className="ra-brand">Boss Lab AI</p>
+          <p className="ra-brand">SonicRing</p>
           <Link to="/" className="ra-back">
             ← Back to site
           </Link>
         </div>
         <h1>SEO &amp; Site Audit Report</h1>
         <p className="ra-meta">
-          bosslabai — Last updated {today} · Vite 8 + React 19 SPA · 3 content
+          SonicRing — Last updated {today} · Vite 8 + React 19 SPA · 3 content
           pages audited
         </p>
       </header>
@@ -480,7 +480,7 @@ export function ReportAuditPage() {
       </section>
 
       <p className="ra-footer">
-        Internal report — generated {today} for bosslabai.
+        Internal report — generated {today} for SonicRing.
       </p>
     </main>
   )

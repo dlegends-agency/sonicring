@@ -109,12 +109,12 @@ export function Waitlist() {
             <span className="accent">AI Workforce.</span>
           </h2>
           <p className="waitlist__copy">
-            BossLab AI is being built for local businesses that want to work
+            SonicRing is being built for local businesses that want to work
             smarter, respond faster, and capture more opportunities.
           </p>
           <p className="waitlist__copy">
             Join the waitlist and be among the first to experience the
-            BossLab AI workforce.
+            SonicRing workforce.
           </p>
 
           <div className="waitlist__benefits">
@@ -142,7 +142,7 @@ export function Waitlist() {
           </span>
 
           <h3 className="waitlist__card-title">
-            Join The BossLab AI <span className="accent">Waitlist</span>
+            Join The SonicRing <span className="accent">Waitlist</span>
           </h3>
           <p className="waitlist__card-sub">
             Fill out the form below and be the first to know when we launch.
@@ -225,7 +225,7 @@ export function Waitlist() {
 
           <p className="waitlist__secure">
             <LockIcon className="waitlist__secure-icon" />
-            No spam. We will only send important BossLab AI updates.
+            No spam. We will only send important SonicRing updates.
           </p>
         </div>
       </div>

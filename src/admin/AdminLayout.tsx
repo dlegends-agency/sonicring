@@ -37,7 +37,7 @@ function AdminLogin({ onSuccess }: { onSuccess: () => void }) {
     <div className="fk-login">
       <div className="fk-login__card">
         <div className="fk-login__mark" aria-hidden="true" />
-        <p className="fk-login__brand">Boss Lab CRM</p>
+        <p className="fk-login__brand">SonicRing CRM</p>
         <h1>Sign in</h1>
         <p className="fk-muted">Enter your password to open the dashboard.</p>
         <form className="fk-login__form" onSubmit={handleLogin}>
@@ -91,7 +91,7 @@ export function AdminLayout() {
         <aside className="fk-sidebar">
           <div className="fk-sidebar__brand">
             <span className="fk-sidebar__logo" aria-hidden="true" />
-            <strong>BOSS LAB AI</strong>
+            <strong>SONICRING</strong>
           </div>
 
           <nav className="fk-sidebar__nav">

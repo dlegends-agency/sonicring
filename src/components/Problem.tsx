@@ -59,7 +59,7 @@ export function Problem() {
 
         <div className="problem__copy">
           <p>
-            BossLab AI helps your business stay available, responsive, and
+            SonicRing helps your business stay available, responsive, and
             ready to serve customers around the clock.
           </p>
         </div>

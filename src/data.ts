@@ -237,7 +237,7 @@ export const testimonialsRowA: Testimonial[] = [
     initials: 'SJ',
     tone: 'blue',
     quote:
-      'Boss Lab took over our missed calls overnight. Leads get answered instantly and our calendar stays full without hiring another receptionist.',
+      'SonicRing took over our missed calls overnight. Leads get answered instantly and our calendar stays full without hiring another receptionist.',
   },
   {
     name: 'Marcus Thorne',
@@ -272,7 +272,7 @@ export const testimonialsRowB: Testimonial[] = [
     initials: 'LO',
     tone: 'cyan',
     quote:
-      'Reliable, clear, and actually useful. Boss Lab replaced three tools we were juggling and made follow-up consistent.',
+      'Reliable, clear, and actually useful. SonicRing replaced three tools we were juggling and made follow-up consistent.',
   },
   {
     name: 'Elena Rodriguez',
@@ -286,9 +286,9 @@ export const testimonialsRowB: Testimonial[] = [
 
 export const faqs = [
   {
-    question: 'What is Boss Lab AI?',
+    question: 'What is SonicRing?',
     answer:
-      'Boss Lab AI gives your business a team of AI employees that answer calls, create marketing, manage social media, follow up with leads, run ads, and automate daily work — all from one dashboard.',
+      'SonicRing gives your business a team of AI employees that answer calls, create marketing, manage social media, follow up with leads, run ads, and automate daily work — all from one dashboard.',
   },
   {
     question: 'How fast can I get started?',
@@ -298,12 +298,12 @@ export const faqs = [
   {
     question: 'Do I need technical skills to use it?',
     answer:
-      'No. Boss Lab is built for local business owners. You manage tasks, approve content, and review performance from a simple dashboard — no coding required.',
+      'No. SonicRing is built for local business owners. You manage tasks, approve content, and review performance from a simple dashboard — no coding required.',
   },
   {
     question: 'Can it work for my industry?',
     answer:
-      'Yes. Boss Lab is built for local businesses like roofers, plumbers, dentists, HVAC, salons, real estate, and many more. Your AI team adapts to the workflows you already use.',
+      'Yes. SonicRing is built for local businesses like roofers, plumbers, dentists, HVAC, salons, real estate, and many more. Your AI team adapts to the workflows you already use.',
   },
   {
     question: 'What happens if I outgrow my plan?',

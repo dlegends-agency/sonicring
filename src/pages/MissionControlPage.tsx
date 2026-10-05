@@ -72,7 +72,7 @@ export function MissionControlPage() {
     return (
       <main className="checkout thankyou">
         <div className="thankyou__inner">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <p className="thankyou__lead">Loading Mission Control…</p>
         </div>
       </main>
@@ -83,7 +83,7 @@ export function MissionControlPage() {
     return (
       <main className="checkout checkout--status">
         <div className="checkout__inner checkout__status-card">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <h1 className="checkout__title">We couldn&apos;t find your account</h1>
           <Link to="/" className="checkout__cta checkout__cta--link">
             Back to home
@@ -105,7 +105,7 @@ export function MissionControlPage() {
       <div className="mc__glow" aria-hidden="true" />
       <div className="mc__inner">
         <header className="mc__header">
-          <p className="checkout__brand">Boss Lab AI</p>
+          <p className="checkout__brand">SonicRing</p>
           <h1 className="mc__title">Mission Control</h1>
           <p className="mc__sub">
             {contact.company || 'Your business'} · Welcome back
