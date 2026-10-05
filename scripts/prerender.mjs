@@ -11,6 +11,9 @@ import { preview } from 'vite'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 
+const TRACKING_HOSTS =
+  /^https?:\/\/([^/]+\.)?(facebook\.net|facebook\.com|googletagmanager\.com|google-analytics\.com)\//
+
 const routes = [
   { path: '/', outFile: 'index.html' },
   { path: '/privacy-policy', outFile: 'privacy-policy/index.html' },
@@ -25,10 +28,23 @@ async function main() {
   const browser = await chromium.launch()
   const page = await browser.newPage()
 
+  // Don't fire tracking pixels from the build machine.
+  await page.route(TRACKING_HOSTS, (route) => route.abort())
+
   for (const route of routes) {
     await page.goto(`${base}${route.path}`, { waitUntil: 'networkidle', timeout: 30000 })
     // Let PageMeta's effect (title/meta/OG/canonical/JSON-LD) settle.
     await page.waitForTimeout(150)
+
+    // Drop third-party scripts injected at runtime (Facebook pixel, gtag).
+    // If baked into the static HTML they run before the app sets up their
+    // globals (e.g. `fbq is not defined`); the app re-injects them anyway.
+    await page.evaluate(() => {
+      for (const script of document.querySelectorAll('script[src]')) {
+        const src = script.getAttribute('src') || ''
+        if (/^(https?:)?\/\//.test(src)) script.remove()
+      }
+    })
 
     const html = await page.content()
     const outPath = join(root, 'dist', route.outFile)
