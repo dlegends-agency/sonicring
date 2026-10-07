@@ -56,6 +56,17 @@ export function PricingLadder() {
           Enterprise custom; usage-credit add-ons are in the supplied pricing
           sheet. Plan prices are not proof of current paid adoption.
         </p>
+
+        <div className="pricing-ladder__flow">
+          <img
+            src="/images/sonicring-customer-flow.svg"
+            alt="SonicRing connects phone calls, SMS texts, emails, website leads, Facebook messages and Google Business to booking appointments, capturing leads, answering customer questions and helping you grow"
+            width={2084}
+            height={754}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </section>
   )
