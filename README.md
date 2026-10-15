@@ -21,3 +21,17 @@ npm run build
 - Opt-in modal (First Name + Email)
 
 Images live in `public/images/` (downloaded from the source site).
+
+## Page structure
+
+- `/` — the 3D office homepage, a static page in `public/index.html`. Its CSS/JS
+  and assets live in `public/office/` (three.js loads from a CDN, no build step).
+- `/office/privacy-policy/`, `/office/terms-and-conditions/`, `/office/report-audit/` —
+  static pages for the homepage. `/office/` itself redirects to `/`.
+- Everything else (`/checkout`, `/onboarding`, `/admin`, `/privacy-policy`,
+  `/terms-and-conditions`, `/report-audit`, and the previous funnel homepage at
+  `/funnel`) is the React app, whose entry is `app.html`. `public/_redirects`
+  rewrites each React route to `/app` (not `/app.html`: Cloudflare Pages
+  redirects `*.html` to the extensionless URL, which loops), so add new React
+  routes there. A small plugin in `vite.config.ts` serves `app.html` for React
+  routes in `npm run dev` and `vite preview`.

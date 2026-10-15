@@ -1,1 +1,14 @@
-/*    /index.html   200
+# The homepage (/) and everything under /office/ are static files.
+# The React app (app.html) handles these routes. Rewrite to "/app", not
+# "/app.html": Cloudflare Pages redirects *.html to the extensionless URL,
+# so a rewrite to /app.html turns into a 308 loop.
+/funnel                  /app   200
+/checkout                /app   200
+/checkout/*              /app   200
+/onboarding              /app   200
+/mission-control         /app   200
+/admin                   /app   200
+/admin/*                 /app   200
+/privacy-policy          /app   200
+/terms-and-conditions    /app   200
+/report-audit            /app   200

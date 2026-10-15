@@ -10,7 +10,10 @@
 <meta name="description" content="SEO, tracking and technical audit of the SonicRing /office/ landing page and its legal pages.">
 <link rel="canonical" href="https://sonicring.com/office/report-audit/">
 <meta name="robots" content="index, follow">
+<link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +26,8 @@
 
 <header class="legal-head">
   <div class="container">
-    <a href="../"><img class="logo-img" src="../assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410"></a>
-    <a class="legal-back" href="../">← Back to site</a>
+    <a href="/"><img class="logo-img" src="../assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410"></a>
+    <a class="legal-back" href="/">← Back to site</a>
   </div>
 </header>
 
@@ -60,9 +63,9 @@
           <tbody>
             <tr><td>1</td><td>Landing page — document head</td><td>The page title was just "SonicRing", which says nothing about the product in search results or browser tabs.</td><td>Changed to "SonicRing — Your AI Workforce, Every Call Answered" (50 chars) and aligned the meta description (136 chars).</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>2</td><td>All office pages — social sharing</td><td>No Open Graph or Twitter Card tags. Shared links fell back to browser defaults.</td><td>Added og:title, og:description, og:url, og:image and twitter:card to all 3 pages, reusing the existing 1200×630 share image at <code>/images/og-image.png</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
-            <tr><td>3</td><td>All office pages — canonical &amp; robots</td><td>No canonical link or robots meta tag on any office page.</td><td>Added a per-page canonical (<code>https://sonicring.com/office/…</code>) and <code>index, follow</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>3</td><td>All office pages — canonical &amp; robots</td><td>No canonical link or robots meta tag on any office page.</td><td>Added a per-page canonical (<code>https://sonicring.com/</code> for the homepage, <code>https://sonicring.com/office/…</code> for the legal pages) and <code>index, follow</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>4</td><td>Crawlability — sitemap</td><td>The office pages weren't listed in the sitemap.</td><td>Added <code>/office/</code>, <code>/office/privacy-policy/</code> and <code>/office/terms-and-conditions/</code> to <code>public/sitemap.xml</code> (now 6 URLs). <code>robots.txt</code> already allows <code>/office/</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
-            <tr><td>5</td><td>Favicon</td><td>The pages used the wide 1224×410 logo PNG (315 KB) as their favicon, which renders badly in tabs.</td><td>Linked the site's existing square <code>/favicon-32x32.png</code> and <code>/apple-touch-icon.png</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>5</td><td>Favicon</td><td>The pages used the wide 1224×410 logo PNG (315 KB) as their favicon, which renders badly in tabs.</td><td>New square icon cut from the SonicRing logo: <code>/favicon.ico</code> (16+32), 16/32/192 px PNGs and a 180 px <code>/apple-touch-icon.png</code> on the brand navy. Used by every page, including the React app (the old <code>favicon.svg</code> was removed).</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>6</td><td>Performance — 3D library</td><td>The un-minified three.js build was loaded from the CDN (1.31 MB).</td><td>Switched the import map to <code>three.module.min.js</code> (0.69 MB, about 47% smaller).</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>7</td><td>Legal pages</td><td>The footer linked to legal pages that didn't exist for this page.</td><td>Added standalone <code>/office/privacy-policy/</code> and <code>/office/terms-and-conditions/</code>, updated for the waitlist fields and text messaging.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>8</td><td>Legal pages — duplication</td><td>The React site also serves <code>/privacy-policy</code> and <code>/terms-and-conditions</code> with older wording, so two versions of each policy are live.</td><td>Pick one version: move the new wording into the React pages and point the office footer there, or retire the old ones.</td><td><span class="ra-badge ra-badge--review">Review</span></td></tr>
@@ -101,7 +104,7 @@
         <table class="ra-table">
           <thead><tr><th>Page</th><th>URL</th><th>Title</th><th>Description</th><th>OG</th><th>Schema</th><th>Canonical</th></tr></thead>
           <tbody>
-            <tr><td>Landing page</td><td><code>/office/</code></td><td>SonicRing — Your AI Workforce, Every Call Answered</td><td>SonicRing deploys a full team of AI employees into your business…</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Homepage (3D office)</td><td><code>/</code></td><td>SonicRing — Your AI Workforce, Every Call Answered</td><td>SonicRing deploys a full team of AI employees into your business…</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
             <tr><td>Privacy Policy</td><td><code>/office/privacy-policy/</code></td><td>Privacy Policy — SonicRing</td><td>How SonicRing collects, uses, shares and protects your information.</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
             <tr><td>Terms &amp; Conditions</td><td><code>/office/terms-and-conditions/</code></td><td>Terms &amp; Conditions — SonicRing</td><td>The terms that govern your use of the SonicRing website and services.</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
           </tbody>
@@ -140,14 +143,14 @@
     <section class="ra-section">
       <h2>Technical Infrastructure</h2>
       <dl class="ra-infra">
-        <dt>Pages</dt><dd>Static HTML/CSS/JS in <code>public/office/</code>, with no build step; Vite copies it to <code>dist/office/</code> as-is</dd>
-        <dt>Hosting</dt><dd>Cloudflare Pages serves the static files first, before the <code>_redirects</code> SPA fallback, so /office/ doesn't touch the React routes</dd>
+        <dt>Pages</dt><dd>Homepage is static <code>public/index.html</code>; its CSS/JS, legal pages and this report live in <code>public/office/</code>. <code>/office/</code> redirects to <code>/</code>. The React app moved to <code>app.html</code> (old funnel homepage now at <code>/funnel</code>)</dd>
+        <dt>Hosting</dt><dd>Cloudflare Pages serves static files first; <code>_redirects</code> sends every other route to <code>/app.html</code> (the React app). A Vite plugin mirrors this for <code>npm run dev</code> and <code>vite preview</code></dd>
         <dt>3D scene</dt><dd>three.js r170 (minified) via jsDelivr import map · WebGL · selective bloom post-processing</dd>
         <dt>Animations</dt><dd>Vanilla JS (<code>features.js</code>) + CSS keyframes · respects reduced-motion settings</dd>
         <dt>Fonts</dt><dd>Geist + Geist Mono via Google Fonts</dd>
         <dt>Sitemap</dt><dd><code>public/sitemap.xml</code> (3 office URLs added)</dd>
         <dt>robots.txt</dt><dd><code>public/robots.txt</code> (allows /office/)</dd>
-        <dt>Favicon</dt><dd><code>/favicon-32x32.png</code> + <code>/apple-touch-icon.png</code> (shared with the main site)</dd>
+        <dt>Favicon</dt><dd><code>/favicon.ico</code>, <code>/favicon-16x16.png</code>, <code>/favicon-32x32.png</code>, <code>/icon-192.png</code>, <code>/apple-touch-icon.png</code> (shared with the React app)</dd>
         <dt>OG image</dt><dd><code>/images/og-image.png</code> (1200×630, shared with the main site)</dd>
         <dt>Analytics</dt><dd>GA4 + Facebook Pixel via <code>/office/tracking.js</code> — 2/3 configured (Google Ads not set)</dd>
         <dt>Forms</dt><dd>Early-access waitlist (business name, email, type, phone): client-side validation only</dd>
