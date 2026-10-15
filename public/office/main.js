@@ -416,7 +416,7 @@ function plant(x, z, s = 1) {
     }
   }
 }
-[[-14.2, -10.2], [-7.8, -3.4], [-3.8, -10.2], [6.8, -10.2], [6.8, -4.3], [-2.4, -4.3], [-14.2, 6.4], [-10.6, 10.3],
+[[-14.2, -10.2], [-7.8, -3.4], [-3.8, -10.2], [6.8, -10.2], [6.8, -4.3], [-2.55, -4.62], [-14.2, 6.4], [-10.6, 10.3],
  [14.2, 6.2], [10.4, 10.2], [-4.6, 10.3], [4.6, 10.3], [-14.2, -4.6]].forEach(([x, z]) => plant(x, z, 0.9 + Math.random() * 0.25));
 
 // ---------- feature props ----------
@@ -551,34 +551,138 @@ const phoneRings = [];
 }
 
 // ---------- AI agents ----------
+// Each agent sits at its desk in the hero, then (driven by scroll) stands up and walks to the
+// meeting room or the lounge sofa, and walks back to its desk for the finale.
 const eyeMat = new THREE.MeshStandardMaterial({ color: 0x15171a, roughness: 0.2 });
+const SEAT_Y = 0.55, STAND_Y = 0.6;
+scene.updateMatrixWorld(true);
+const v3 = (x, z) => new THREE.Vector3(x, 0, z);
+const fromDesk = (desk, x, z) => desk.localToWorld(new THREE.Vector3(x, 0, z));
+const fromLounge = (x, z) => lounge.localToWorld(new THREE.Vector3(x, 0, z));
+
+// Shared routes. The meeting room's only opening is the gap in its glass front at x 0.4..2.2.
+const DOOR_OUT = v3(1.3, -4.45), DOOR_IN = v3(1.3, -5.7);
+const MEETING = [ // [seat x, row] — back row faces +z, front row faces -z
+  [-0.3, "back"], [0.9, "back"], [2.1, "back"], [0.9, "front"], [2.1, "front"],
+];
+function meetingLeg(i) {
+  const [x, row] = MEETING[i];
+  return row === "front"
+    ? { path: [DOOR_IN, v3(x, -6.05)], seat: v3(x, -6.72), face: 0, y: SEAT_Y }
+    : { path: [DOOR_IN, v3(-1.4, -6.1), v3(-1.4, -10.15), v3(x, -10.15)], seat: v3(x, -9.28), face: Math.PI, y: SEAT_Y };
+}
+function loungeLeg(seatX) {
+  // Enter between the sofa and the coffee table from the sofa's right-hand end
+  return { path: [v3(-5.2, 7.6), fromLounge(2.35, -0.08), fromLounge(seatX, -0.08)], seat: fromLounge(seatX, 0.7), face: lounge.rotation.y, y: 0.58 };
+}
+// Per agent (same order as TEAM): how to get from the desk to the corridor, then the destination.
+const ROUTES = [
+  /* Support   */ (d) => ({ out: [fromDesk(d, 1.45, 1.55), v3(-2.6, 0.35), v3(-2.6, -4.0), DOOR_OUT], dest: meetingLeg(0) }),
+  /* Research  */ (d) => ({ out: [fromDesk(d, 1.55, 1.55), v3(0.75, -4.0), DOOR_OUT], dest: meetingLeg(1) }),
+  /* Marketing */ (d) => ({ out: [fromDesk(d, -1.45, 1.55), v3(1.9, -3.6), DOOR_OUT], dest: meetingLeg(3) }),
+  /* Sales     */ (d) => ({ out: [fromDesk(d, -1.2, 1.55), v3(5.2, 7.6)], dest: loungeLeg(0) }),
+  /* (cyan)    */ (d) => ({ out: [fromDesk(d, 1.6, 1.55), v3(3.0, 7.6)], dest: loungeLeg(-0.95) }),
+  /* Designer  */ (d) => ({ out: [fromDesk(d, -1.2, 1.55), v3(6.0, 7.6)], dest: loungeLeg(0.95) }),
+  /* Recept.   */ (d) => ({ out: [fromDesk(d, 1.55, 1.55), v3(2.75, -1.5), v3(1.6, -2.6), DOOR_OUT], dest: meetingLeg(4) }),
+  /* CEO       */ (d) => ({ out: [fromDesk(d, 1.9, 1.55), v3(-1.3, 1.0), v3(-2.6, 0.35), v3(-2.6, -4.0), DOOR_OUT], dest: meetingLeg(2) }),
+];
+
+function buildJourney(desk, i) {
+  const route = ROUTES[i](desk);
+  const seat = fromDesk(desk, 0, 0.92);
+  const pts = [seat, fromDesk(desk, 0, 1.55), ...route.out, ...route.dest.path, route.dest.seat];
+  const cum = [0];
+  for (let k = 1; k < pts.length; k++) cum.push(cum[k - 1] + pts[k].distanceTo(pts[k - 1]));
+  return {
+    pts, cum, total: cum[cum.length - 1],
+    startFace: desk.rotation.y, endFace: route.dest.face, startY: SEAT_Y, endY: route.dest.y,
+  };
+}
+
 const agents = seats.map((desk, i) => {
   const [name, , , color] = TEAM[i];
   const mat = new THREE.MeshPhysicalMaterial({ color, emissive: color, emissiveIntensity: 0.12, roughness: 0.3, clearcoat: 1, clearcoatRoughness: 0.15 });
   const a = new THREE.Group();
-  a.position.set(0, 0.55, 0.92);
-  desk.add(a);
+  scene.add(a);
   mesh(new THREE.CapsuleGeometry(0.25, 0.3, 8, 20), mat, 0, 0.34, 0, a);           // body
   const head = new THREE.Group();
   head.position.set(0, 0.98, -0.02);
   a.add(head);
   mesh(new THREE.SphereGeometry(0.4, 40, 24), mat, 0, 0, 0, head);                  // head
   for (const sx of [-1, 1]) mesh(new THREE.SphereGeometry(0.055, 14, 10), eyeMat, sx * 0.14, 0.04, -0.38, head);
-  const arms = [];
+  const arms = [], legs = [];
   for (const sx of [-1, 1]) {
     const pivot = new THREE.Group();
     pivot.position.set(sx * 0.29, 0.52, -0.02);
     a.add(pivot);
-    const arm = mesh(new THREE.CapsuleGeometry(0.075, 0.34, 6, 10), mat, 0, -0.2, 0, pivot);
-    arm.rotation.x = 0;
+    mesh(new THREE.CapsuleGeometry(0.075, 0.34, 6, 10), mat, 0, -0.2, 0, pivot);
     pivot.rotation.x = 1.15;
     arms.push(pivot);
-    const leg = mesh(new THREE.CapsuleGeometry(0.085, 0.34, 6, 10), mat, sx * 0.13, 0.04, -0.26, a);
-    leg.rotation.x = Math.PI / 2;
+    // Legs hang from a hip pivot: straight down when standing, forward when seated
+    const hip = new THREE.Group();
+    hip.position.set(sx * 0.13, 0.12, -0.02);
+    a.add(hip);
+    mesh(new THREE.CapsuleGeometry(0.085, 0.55, 6, 10), mat, 0, -0.36, 0, hip);
+    hip.rotation.x = Math.PI / 2;
+    legs.push(hip);
   }
-  a.userData = { phase: i * 0.7, name, arms, head };
+  const journey = buildJourney(desk, i);
+  a.position.set(journey.pts[0].x, SEAT_Y, journey.pts[0].z);
+  a.rotation.y = journey.startFace;
+  a.userData = { phase: i * 0.7, name, arms, legs, head, journey, delay: i * 0.035 };
   return a;
 });
+
+// Where an agent is `u` (0..1) of the way from its desk to its destination seat
+const shortAngle = (from, to) => from + Math.atan2(Math.sin(to - from), Math.cos(to - from));
+function poseAgent(a, u, dt, time) {
+  const { journey: J, arms, legs, head, phase } = a.userData;
+  const d = u * J.total;
+  let k = 1;
+  while (k < J.pts.length - 1 && J.cum[k] < d) k++;
+  const segLen = J.cum[k] - J.cum[k - 1] || 1;
+  const f = THREE.MathUtils.clamp((d - J.cum[k - 1]) / segLen, 0, 1);
+  const A = J.pts[k - 1], B = J.pts[k];
+  a.position.x = A.x + (B.x - A.x) * f;
+  a.position.z = A.z + (B.z - A.z) * f;
+
+  // Seated amount: blends on the first segment (standing up) and the last (sitting down)
+  const last = J.pts.length - 1;
+  let seated = 0, faceTo;
+  if (k === 1) { seated = 1 - f; faceTo = J.startFace; }
+  else if (k === last) { seated = f; faceTo = J.endFace; }
+  else faceTo = Math.atan2(-(B.x - A.x), -(B.z - A.z));
+  const atDesk = u < 0.02, atDest = u > 0.98;
+  const seatY = u < 0.5 ? J.startY : J.endY;
+  const bob = reduceMotion ? 0 : Math.sin(time * 2 + phase) * 0.015;
+  a.position.y = THREE.MathUtils.lerp(STAND_Y, seatY, seated) + bob * seated;
+
+  // Turn smoothly towards the walking direction (or the seat's facing)
+  const tk = 1 - Math.exp(-dt * 9);
+  const target = shortAngle(a.rotation.y, faceTo);
+  a.rotation.y += (target - a.rotation.y) * tk;
+
+  // Legs: forward when seated; swing with distance walked (so they stop when scrolling stops)
+  const stride = Math.sin(d * 5.5) * 0.55 * (1 - seated);
+  legs[0].rotation.x = THREE.MathUtils.lerp(stride, Math.PI / 2, seated);
+  legs[1].rotation.x = THREE.MathUtils.lerp(-stride, Math.PI / 2, seated);
+
+  // Arms: typing at the desk, resting when seated elsewhere, swinging while walking
+  const typing = atDesk && !reduceMotion;
+  const tp = time * 11 + phase;
+  const rest = atDesk ? 1.15 : 0.75;
+  for (let s = 0; s < 2; s++) {
+    const tap = typing ? Math.max(0, Math.sin(tp + s * Math.PI)) * 0.14 : 0;
+    const swing = 0.12 + (s ? -1 : 1) * Math.sin(d * 5.5) * 0.45;
+    arms[s].rotation.x = THREE.MathUtils.lerp(swing, rest + tap, seated);
+  }
+  // Head: glance around at the desk; nod as if talking in meetings and on the sofa
+  if (!reduceMotion) {
+    head.rotation.y = atDest ? Math.sin(time * 0.9 + phase) * 0.35 : Math.sin(time * 0.6 + phase) * 0.18;
+    head.rotation.x = atDest ? Math.sin(time * 3 + phase) * 0.06 : Math.sin(time * 1.3 + phase) * 0.04;
+  }
+  return u;
+}
 
 // ---------- labels ----------
 const LABELS = [
@@ -721,22 +825,20 @@ function frame() {
   backG.scale.y = lerp(backG.scale.y, camera.position.z < -11 ? 0.04 : 1, fk);
   rightG.scale.y = lerp(rightG.scale.y, camera.position.x > 15 ? 0.04 : 1, fk);
 
-  // The team is there in the hero, gone during the "doing it alone" stops,
-  // and back for the finale. The phone rings unanswered while they're away.
-  const arrive = 1 - THREE.MathUtils.smoothstep(s, 0.25, 0.9) + THREE.MathUtils.smoothstep(s, 4, 4.9);
-  agents.forEach((a, i) => {
-    const local = THREE.MathUtils.clamp(arrive * 1.6 - i * 0.07, 0, 1);
-    a.scale.setScalar(Math.max(0.001, local));
-    a.userData.shown = local;
-    a.position.y = 0.55 + (reduceMotion ? 0 : Math.sin(time * 2 + a.userData.phase) * 0.02);
-    if (!reduceMotion) {
-      const tp = time * 11 + a.userData.phase;
-      a.userData.arms[0].rotation.x = 1.15 + Math.max(0, Math.sin(tp)) * 0.14;
-      a.userData.arms[1].rotation.x = 1.15 + Math.max(0, Math.sin(tp + Math.PI)) * 0.14;
-      a.userData.head.rotation.y = Math.sin(time * 0.6 + a.userData.phase) * 0.18;
-      a.userData.head.rotation.x = Math.sin(time * 1.3 + a.userData.phase) * 0.04;
-    }
+  // The team works at their desks in the hero, walks off to the meeting room and the sofa
+  // during the "doing it alone" stops (so the phone rings unanswered), and walks back for
+  // the finale. `away` is 0 at the desks and 1 at the destinations.
+  const away = s < 2.5
+    ? THREE.MathUtils.clamp((s - 0.1) / 1.0, 0, 1)
+    : 1 - THREE.MathUtils.clamp((s - 3.9) / 1.0, 0, 1);
+  let atDesks = 0;
+  agents.forEach((a) => {
+    const d = a.userData.delay;
+    const u = THREE.MathUtils.smoothstep(THREE.MathUtils.clamp((away - d) / (1 - 0.3), 0, 1), 0, 1);
+    poseAgent(a, u, dt, time);
+    atDesks += 1 - THREE.MathUtils.smoothstep(u, 0, 0.15);
   });
+  const arrive = atDesks / agents.length;
   const phoneColor = cOrange.clone().lerp(cCyan, arrive);
   phoneScreenMat.color.copy(phoneColor);
   phoneScreenMat.emissive.copy(phoneColor);
@@ -765,7 +867,6 @@ function frame() {
     if (l.agent) {
       l.agent.getWorldPosition(tmp);
       tmp.y += 1.75;
-      vis = l.agent.userData.shown > 0.6 ? 1 : 0;
     } else {
       tmp.copy(l.p);
       if (l.g) { tmp.y *= l.g.scale.y; vis = l.g.scale.y > 0.6 ? 1 : 0; }
