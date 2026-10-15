@@ -427,3 +427,12 @@ strong { color: var(--white); font-weight: 600; }
 .faq-qa details p { font-size: 17px; line-height: 1.6; max-width: 640px; }
 .faq-qa details[open] p { animation: pop .3s ease; }
 .foot-bottom { padding: 36px 0; }
+
+/* ===== Legal footer ===== */
+.foot-bottom { padding: 48px 0 40px; }
+.foot-legal { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+.foot-links { display: flex; gap: 10px; align-items: center; font-size: 14px; color: rgba(255,255,255,.4); }
+.foot-links a { color: rgba(255,255,255,.75); transition: color .2s; }
+.foot-links a:hover { color: var(--cyan); }
+.foot-copy { font-size: 14px; color: var(--muted); }
+.foot-disclaimer { max-width: 640px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.4); }

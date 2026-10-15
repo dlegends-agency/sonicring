@@ -214,6 +214,7 @@
       if (bad && ok) { field.focus(); ok = false; }
     }
     if (!ok) return;
+    window.srTrack?.lead({ content_name: "waitlist", business_type: form.business_type.value });
     form.hidden = true;
     form.parentElement.querySelector(".early-done").hidden = false;
   });

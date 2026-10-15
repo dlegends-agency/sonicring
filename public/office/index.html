@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (GA4) + Facebook Pixel, same IDs as the main site -->
+<script src="tracking.js"></script>
 <meta name="theme-color" content="#0d0f1c">
-<link rel="icon" href="assets/sonicring-logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SonicRing</title>
-<meta name="description" content="SonicRing deploys a full team of AI agents into your business. Every call answered, every lead followed up, every appointment booked.">
+<title>SonicRing — Your AI Workforce, Every Call Answered</title>
+<link rel="canonical" href="https://sonicring.com/office/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SonicRing">
+<meta property="og:title" content="SonicRing — Your AI Workforce, Every Call Answered">
+<meta property="og:description" content="SonicRing deploys a full team of AI employees into your business. Every call answered, every lead followed up, every appointment booked.">
+<meta property="og:url" content="https://sonicring.com/office/">
+<meta property="og:image" content="https://sonicring.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SonicRing — Your AI Workforce, Every Call Answered">
+<meta name="twitter:description" content="SonicRing deploys a full team of AI employees into your business. Every call answered, every lead followed up, every appointment booked.">
+<meta name="twitter:image" content="https://sonicring.com/images/og-image.png">
+<meta name="description" content="SonicRing deploys a full team of AI employees into your business. Every call answered, every lead followed up, every appointment booked.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -349,9 +364,15 @@
 
 <footer class="foot foot-bottom">
   <div class="container">
-    <div class="foot-row">
+    <div class="foot-legal">
       <img class="logo-img logo-foot" src="assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410">
-      <span>© 2026 SonicRing</span>
+      <nav class="foot-links" aria-label="Legal">
+        <a href="privacy-policy/">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="terms-and-conditions/">Terms &amp; Conditions</a>
+      </nav>
+      <p class="foot-copy">© 2026 SonicRing. All Rights Reserved.</p>
+      <p class="foot-disclaimer">This website is not a part of Facebook or Google. Additionally, this site is not endorsed by or affiliated to Facebook or Google. All brands shown on this site belong to its respective owners.</p>
     </div>
   </div>
 </footer>
@@ -359,7 +380,7 @@
 <script src="features.js" defer></script>
 <script type="importmap">
 { "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
   "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
 } }
 </script>

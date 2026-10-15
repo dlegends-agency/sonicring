@@ -1,0 +1,50 @@
+/* SEO & Site Audit Report (loaded after styles.css + legal.css) */
+.ra-meta { margin-top: 14px; font: 600 13px var(--mono); color: var(--muted); }
+.ra-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-top: 36px; }
+.ra-stat { padding: 18px 16px; border-radius: 18px; background: var(--ink-2); border: 1px solid rgba(255,255,255,.08); }
+.ra-stat b { display: block; font-size: 32px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+.ra-stat span { display: block; margin-top: 8px; font-size: 13px; color: var(--muted); }
+.ra-stat.warn b { color: #ffb86b; }
+.ra-callout { display: flex; gap: 12px; margin-top: 14px; padding: 16px 18px; border-radius: 16px; font-size: 15px; line-height: 1.55; }
+.ra-callout i { font-style: normal; font-weight: 800; }
+.ra-callout.ok { background: rgba(34,197,94,.1); color: #c9f5d8; }
+.ra-callout.warn { background: rgba(255,184,107,.1); color: #ffe2bf; }
+
+.legal-body .narrow.ra-wide { max-width: 1180px; width: min(1180px, 100% - 48px); }
+.ra-section + .ra-section { margin-top: 64px; }
+.ra-section > p { color: rgba(13,15,28,.65); font-size: 15px; }
+.ra-table-wrap { margin-top: 18px; overflow-x: auto; border: 1px solid rgba(13,15,28,.1); border-radius: 16px; }
+.ra-table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
+.ra-table th { text-align: left; font: 600 11px var(--mono); letter-spacing: .04em; text-transform: uppercase; color: rgba(13,15,28,.55); background: #f6f4fb; padding: 12px 14px; white-space: nowrap; }
+.ra-table td { padding: 14px; border-top: 1px solid rgba(13,15,28,.08); vertical-align: top; color: rgba(13,15,28,.82); }
+.ra-table td:first-child { color: rgba(13,15,28,.45); font-variant-numeric: tabular-nums; }
+.ra-table code { font: 500 12.5px var(--mono); background: #f3eeff; padding: 1px 5px; border-radius: 5px; color: #5b2bb5; }
+.ra-table .yes { color: #16a34a; font-weight: 800; }
+.ra-table .no { color: rgba(13,15,28,.35); }
+
+.ra-badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font: 600 11px var(--mono); white-space: nowrap; }
+.ra-badge--done { background: #dcfce7; color: #166534; }
+.ra-badge--review { background: #fef3c7; color: #92400e; }
+.ra-badge--open { background: #fee2e2; color: #991b1b; }
+.ra-badge--high { background: #fee2e2; color: #991b1b; }
+.ra-badge--med { background: #fef3c7; color: #92400e; }
+.ra-badge--low { background: #e0f2fe; color: #075985; }
+
+.ra-scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 18px; }
+.ra-score { padding: 22px; border-radius: 18px; background: #f6f4fb; text-align: center; }
+.ra-score b { display: block; font-size: 36px; font-weight: 800; color: rgba(13,15,28,.3); }
+.ra-score span { font-size: 13px; color: rgba(13,15,28,.6); }
+
+.ra-infra { display: grid; grid-template-columns: 200px 1fr; margin-top: 18px; border: 1px solid rgba(13,15,28,.1); border-radius: 16px; overflow: hidden; font-size: 14px; }
+.ra-infra dt, .ra-infra dd { padding: 12px 16px; border-top: 1px solid rgba(13,15,28,.08); margin: 0; }
+.ra-infra dt { font-weight: 600; color: var(--ink); background: #faf9fd; }
+.ra-infra dd { color: rgba(13,15,28,.75); }
+.ra-infra dt:first-of-type, .ra-infra dd:first-of-type { border-top: 0; }
+.ra-foot-note { margin-top: 48px; font-size: 13px; color: rgba(13,15,28,.5); }
+
+@media (max-width: 1000px) { .ra-stats { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) {
+  .ra-stats, .ra-scores { grid-template-columns: repeat(2, 1fr); }
+  .ra-infra { grid-template-columns: 1fr; }
+  .ra-infra dd { border-top: 0; padding-top: 0; }
+}
