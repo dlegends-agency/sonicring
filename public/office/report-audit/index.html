@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (GA4) + Facebook Pixel, same IDs as the main site -->
+<script src="../tracking.js"></script>
+<meta name="theme-color" content="#0d0f1c">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO &amp; Site Audit Report (Office Page) — SonicRing</title>
+<meta name="description" content="SEO, tracking and technical audit of the SonicRing /office/ landing page and its legal pages.">
+<link rel="canonical" href="https://sonicring.com/office/report-audit/">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../legal.css">
+<link rel="stylesheet" href="report.css">
+</head>
+<body>
+
+<header class="legal-head">
+  <div class="container">
+    <a href="../"><img class="logo-img" src="../assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410"></a>
+    <a class="legal-back" href="../">← Back to site</a>
+  </div>
+</header>
+
+<section class="legal-hero">
+  <div class="container">
+    <p class="kicker">Internal report</p>
+    <h1>SEO &amp; Site Audit Report</h1>
+    <p class="ra-meta">SonicRing /office/ — Last updated October 16, 2026 · Static HTML + three.js · 3 content pages audited</p>
+
+    <div class="ra-stats">
+      <div class="ra-stat"><b>3</b><span>Content Pages</span></div>
+      <div class="ra-stat"><b>3/3</b><span>With Meta Description</span></div>
+      <div class="ra-stat"><b>3/3</b><span>With OG Tags</span></div>
+      <div class="ra-stat"><b>3/3</b><span>With Canonical</span></div>
+      <div class="ra-stat"><b>3/3</b><span>Unique Titles</span></div>
+      <div class="ra-stat"><b>2/3</b><span>Trackers Loaded</span></div>
+    </div>
+
+    <div class="ra-callout ok"><i>✓</i><span>Unique per-page titles, descriptions, Open Graph + Twitter tags, canonicals, robots tags, square favicons and sitemap entries are in place for all 3 office pages. GA4 and the Facebook Pixel load on every office page, with a Lead event on waitlist signup.</span></div>
+    <div class="ra-callout warn"><i>⚠</i><span>Remaining: the waitlist form isn't connected to a backend, the strategy-session button has no booking link yet, and Google Ads isn't configured (same as the main site).</span></div>
+  </div>
+</section>
+
+<main class="legal-body">
+  <div class="container narrow ra-wide">
+
+    <section class="ra-section">
+      <h2>Baseline Issues &amp; Recommendations</h2>
+      <p>Findings from the audit of the /office/ pages and what shipped since. Items below are fixed unless marked Open or Review.</p>
+      <div class="ra-table-wrap">
+        <table class="ra-table">
+          <thead><tr><th>#</th><th>Area</th><th>Issue</th><th>Resolution</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Landing page — document head</td><td>The page title was just "SonicRing", which says nothing about the product in search results or browser tabs.</td><td>Changed to "SonicRing — Your AI Workforce, Every Call Answered" (50 chars) and aligned the meta description (136 chars).</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>2</td><td>All office pages — social sharing</td><td>No Open Graph or Twitter Card tags. Shared links fell back to browser defaults.</td><td>Added og:title, og:description, og:url, og:image and twitter:card to all 3 pages, reusing the existing 1200×630 share image at <code>/images/og-image.png</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>3</td><td>All office pages — canonical &amp; robots</td><td>No canonical link or robots meta tag on any office page.</td><td>Added a per-page canonical (<code>https://sonicring.com/office/…</code>) and <code>index, follow</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>4</td><td>Crawlability — sitemap</td><td>The office pages weren't listed in the sitemap.</td><td>Added <code>/office/</code>, <code>/office/privacy-policy/</code> and <code>/office/terms-and-conditions/</code> to <code>public/sitemap.xml</code> (now 6 URLs). <code>robots.txt</code> already allows <code>/office/</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>5</td><td>Favicon</td><td>The pages used the wide 1224×410 logo PNG (315 KB) as their favicon, which renders badly in tabs.</td><td>Linked the site's existing square <code>/favicon-32x32.png</code> and <code>/apple-touch-icon.png</code>.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>6</td><td>Performance — 3D library</td><td>The un-minified three.js build was loaded from the CDN (1.31 MB).</td><td>Switched the import map to <code>three.module.min.js</code> (0.69 MB, about 47% smaller).</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>7</td><td>Legal pages</td><td>The footer linked to legal pages that didn't exist for this page.</td><td>Added standalone <code>/office/privacy-policy/</code> and <code>/office/terms-and-conditions/</code>, updated for the waitlist fields and text messaging.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>8</td><td>Legal pages — duplication</td><td>The React site also serves <code>/privacy-policy</code> and <code>/terms-and-conditions</code> with older wording, so two versions of each policy are live.</td><td>Pick one version: move the new wording into the React pages and point the office footer there, or retire the old ones.</td><td><span class="ra-badge ra-badge--review">Review</span></td></tr>
+            <tr><td>9</td><td>Tracking — analytics &amp; pixels</td><td>GA4, Facebook Pixel and Google Ads are loaded by the React app's <code>index.html</code>, which the static office pages don't use, so office traffic and waitlist signups weren't tracked.</td><td>Added <code>/office/tracking.js</code> to all office pages: GA4 <code>G-2283FYD6CE</code> (automatic page_view), Facebook Pixel (PageView, ViewContent) and Lead + <code>generate_lead</code> on waitlist submit, with no personal data. IDs are written into the file, so if they change in <code>/admin/settings</code>, update them here too. Skipped on localhost.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
+            <tr><td>10</td><td>Waitlist form</td><td>The form validates and shows a thank-you state but doesn't send the data anywhere.</td><td>Post signups to the existing Supabase contacts CRM (or a form service) before showing the success state.</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
+            <tr><td>11</td><td>Primary CTA</td><td>"Book Your Free Strategy Session" links to <code>#</code>.</td><td>Replace with the real booking link (Calendly or similar).</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
+            <tr><td>12</td><td>Image weight</td><td>The logo is a 315 KB PNG shown at about 76 px tall in the hero and 48 px in the footer.</td><td>Export a WebP/PNG at roughly 2× display size (about 20–40 KB).</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
+            <tr><td>13</td><td>Legal — contact details</td><td>Both policies say "contact SonicRing through the contact methods provided on our website", but no contact email, legal name or address is listed.</td><td>Add a contact email and the business's legal name and address to both policies.</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
+            <tr><td>14</td><td>Content — pricing copy</td><td>The pricing heading and intro closely match officeverse.id's wording.</td><td>Rewrite in SonicRing's own words, and match the intro to the plans (AI employees, credits, phone minutes).</td><td><span class="ra-badge ra-badge--review">Review</span></td></tr>
+            <tr><td>15</td><td>Structured data</td><td>No JSON-LD on the office pages (the React homepage already has Organization + WebSite).</td><td>Optional: add WebPage + Offer/Product JSON-LD for the pricing plans.</td><td><span class="ra-badge ra-badge--review">Review</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="ra-section">
+      <h2>Tracking &amp; Analytics Codes</h2>
+      <p>Status on the static /office/ pages, loaded by <code>/office/tracking.js</code> with the same IDs as the main site. Tracking is skipped on localhost so local testing doesn't add visits to the real analytics.</p>
+      <div class="ra-table-wrap">
+        <table class="ra-table">
+          <thead><tr><th>Tool</th><th>ID / Tag</th><th>Script source</th><th>Status</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Facebook Pixel</td><td>2400032310521798</td><td>connect.facebook.net/en_US/fbevents.js</td><td><span class="ra-badge ra-badge--done">Configured</span></td><td>Fires PageView and ViewContent on load and Lead on waitlist submit (business type only, no email or phone).</td></tr>
+            <tr><td>Google Analytics (GA4)</td><td>G-2283FYD6CE</td><td>googletagmanager.com/gtag/js</td><td><span class="ra-badge ra-badge--done">Active</span></td><td>Automatic page_view on every office page, plus a <code>generate_lead</code> event on waitlist submit.</td></tr>
+            <tr><td>Google Ads</td><td>Not set</td><td>shares gtag.js with GA4</td><td><span class="ra-badge ra-badge--open">Not configured</span></td><td>Ready in <code>tracking.js</code>: add the conversion ID and lead label once they exist (not configured on the main site either).</td></tr>
+            <tr><td>Cloudflare Web Analytics</td><td>beacon.min.js</td><td>static.cloudflareinsights.com</td><td><span class="ra-badge ra-badge--review">Verify</span></td><td>Injected at the edge by Cloudflare when enabled for the site, so it should also cover /office/. Confirm after deploy.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="ra-section">
+      <h2>SEO Audit by Page</h2>
+      <p>Title &lt; 60 chars · Description &lt; 160 chars · OG = page-level Open Graph · Schema = JSON-LD · Canonical = per-page URL. Tags are in the static HTML, so crawlers see them without running JavaScript.</p>
+      <div class="ra-table-wrap">
+        <table class="ra-table">
+          <thead><tr><th>Page</th><th>URL</th><th>Title</th><th>Description</th><th>OG</th><th>Schema</th><th>Canonical</th></tr></thead>
+          <tbody>
+            <tr><td>Landing page</td><td><code>/office/</code></td><td>SonicRing — Your AI Workforce, Every Call Answered</td><td>SonicRing deploys a full team of AI employees into your business…</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Privacy Policy</td><td><code>/office/privacy-policy/</code></td><td>Privacy Policy — SonicRing</td><td>How SonicRing collects, uses, shares and protects your information.</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
+            <tr><td>Terms &amp; Conditions</td><td><code>/office/terms-and-conditions/</code></td><td>Terms &amp; Conditions — SonicRing</td><td>The terms that govern your use of the SonicRing website and services.</td><td class="yes">✓</td><td class="no">—</td><td class="yes">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="ra-section">
+      <h2>PageSpeed Insights Audit</h2>
+      <p>Not measured yet. Run Lighthouse (mobile) on the deployed <code>/office/</code> URL and record the baseline here.</p>
+      <div class="ra-scores">
+        <div class="ra-score"><b>—</b><span>Performance</span></div>
+        <div class="ra-score"><b>—</b><span>Accessibility</span></div>
+        <div class="ra-score"><b>—</b><span>Best Practices</span></div>
+        <div class="ra-score"><b>—</b><span>SEO</span></div>
+      </div>
+    </section>
+
+    <section class="ra-section">
+      <h2>Remaining Gaps &amp; Phase 2 Recommendations</h2>
+      <div class="ra-table-wrap">
+        <table class="ra-table">
+          <thead><tr><th>Priority</th><th>Scope</th><th>Issue</th><th>Recommended fix</th></tr></thead>
+          <tbody>
+            <tr><td><span class="ra-badge ra-badge--high">High</span></td><td>Conversion</td><td>Waitlist signups aren't saved.</td><td>Connect the form to Supabase (contacts CRM) or a form service.</td></tr>
+            <tr><td><span class="ra-badge ra-badge--high">High</span></td><td>Conversion</td><td>The strategy-session button goes nowhere.</td><td>Add the real booking link.</td></tr>
+            <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Tracking</td><td>The tracking IDs are copied into <code>tracking.js</code>, not read from <code>/admin/settings</code>.</td><td>Keep them in sync manually, or load the settings from Supabase if the office page moves into the React app.</td></tr>
+            <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Performance</td><td>The 3D scene needs about 0.7 MB of three.js plus WebGL post-processing, which is heavy on low-end phones.</td><td>Measure with Lighthouse; if needed, lower the pixel ratio and turn off the glow on mobile, or show a still image there.</td></tr>
+            <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Performance</td><td>The 315 KB logo PNG is used for small display sizes.</td><td>Export a right-sized WebP.</td></tr>
+            <tr><td><span class="ra-badge ra-badge--low">Low</span></td><td>Reliability</td><td>three.js loads from the jsDelivr CDN at runtime.</td><td>Optionally self-host or bundle it through Vite so the page doesn't depend on a third-party CDN.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="ra-section">
+      <h2>Technical Infrastructure</h2>
+      <dl class="ra-infra">
+        <dt>Pages</dt><dd>Static HTML/CSS/JS in <code>public/office/</code>, with no build step; Vite copies it to <code>dist/office/</code> as-is</dd>
+        <dt>Hosting</dt><dd>Cloudflare Pages serves the static files first, before the <code>_redirects</code> SPA fallback, so /office/ doesn't touch the React routes</dd>
+        <dt>3D scene</dt><dd>three.js r170 (minified) via jsDelivr import map · WebGL · selective bloom post-processing</dd>
+        <dt>Animations</dt><dd>Vanilla JS (<code>features.js</code>) + CSS keyframes · respects reduced-motion settings</dd>
+        <dt>Fonts</dt><dd>Geist + Geist Mono via Google Fonts</dd>
+        <dt>Sitemap</dt><dd><code>public/sitemap.xml</code> (3 office URLs added)</dd>
+        <dt>robots.txt</dt><dd><code>public/robots.txt</code> (allows /office/)</dd>
+        <dt>Favicon</dt><dd><code>/favicon-32x32.png</code> + <code>/apple-touch-icon.png</code> (shared with the main site)</dd>
+        <dt>OG image</dt><dd><code>/images/og-image.png</code> (1200×630, shared with the main site)</dd>
+        <dt>Analytics</dt><dd>GA4 + Facebook Pixel via <code>/office/tracking.js</code> — 2/3 configured (Google Ads not set)</dd>
+        <dt>Forms</dt><dd>Early-access waitlist (business name, email, type, phone): client-side validation only</dd>
+        <dt>Primary CTA</dt><dd>"Book Your Free Strategy Session" and "Reserve My Spot" (waitlist)</dd>
+      </dl>
+    </section>
+
+    <p class="ra-foot-note">Internal report — generated October 16, 2026 for SonicRing.</p>
+  </div>
+</main>
+
+<footer class="foot foot-bottom">
+  <div class="container">
+    <div class="foot-legal">
+      <img class="logo-img logo-foot" src="../assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410">
+      <nav class="foot-links" aria-label="Legal">
+        <a href="../privacy-policy/">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="../terms-and-conditions/">Terms &amp; Conditions</a>
+      </nav>
+      <p class="foot-copy">© 2026 SonicRing. All Rights Reserved.</p>
+      <p class="foot-disclaimer">This website is not a part of Facebook or Google. Additionally, this site is not endorsed by or affiliated to Facebook or Google. All brands shown on this site belong to its respective owners.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
