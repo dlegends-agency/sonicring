@@ -472,7 +472,7 @@ export function ReportAuditPage() {
               </tr>
               <tr>
                 <th scope="row">Favicon</th>
-                <td>/favicon.svg + /favicon-32x32.png + /apple-touch-icon.png</td>
+                <td>/favicon.ico + /favicon-16x16.png + /favicon-32x32.png + /icon-192.png + /apple-touch-icon.png</td>
               </tr>
               <tr>
                 <th scope="row">OG image</th>
