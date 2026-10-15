@@ -31,5 +31,7 @@ Images live in `public/images/` (downloaded from the source site).
 - Everything else (`/checkout`, `/onboarding`, `/admin`, `/privacy-policy`,
   `/terms-and-conditions`, `/report-audit`, and the previous funnel homepage at
   `/funnel`) is the React app, whose entry is `app.html`. `public/_redirects`
-  sends unknown routes to `/app.html`, and a small plugin in `vite.config.ts`
-  does the same for `npm run dev` and `vite preview`.
+  rewrites each React route to `/app` (not `/app.html`: Cloudflare Pages
+  redirects `*.html` to the extensionless URL, which loops), so add new React
+  routes there. A small plugin in `vite.config.ts` serves `app.html` for React
+  routes in `npm run dev` and `vite preview`.
