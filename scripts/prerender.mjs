@@ -15,7 +15,6 @@ const TRACKING_HOSTS =
   /^https?:\/\/([^/]+\.)?(facebook\.net|facebook\.com|googletagmanager\.com|google-analytics\.com)\//
 
 const routes = [
-  { path: '/', outFile: 'index.html' },
   { path: '/privacy-policy', outFile: 'privacy-policy/index.html' },
   { path: '/terms-and-conditions', outFile: 'terms-and-conditions/index.html' },
   { path: '/report-audit', outFile: 'report-audit/index.html' },
@@ -63,9 +62,10 @@ async function main() {
   await browser.close()
   await server.httpServer?.close()
 
+  // The homepage is the static office page copied from public/index.html.
   const indexPath = join(root, 'dist', 'index.html')
   if (!existsSync(indexPath) || readFileSync(indexPath, 'utf8').length < 100) {
-    throw new Error('Prerender produced an unexpectedly small dist/index.html')
+    throw new Error('dist/index.html (static homepage) is missing or unexpectedly small')
   }
 }
 
