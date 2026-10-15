@@ -436,3 +436,6 @@ strong { color: var(--white); font-weight: 600; }
 .foot-links a:hover { color: var(--cyan); }
 .foot-copy { font-size: 14px; color: var(--muted); }
 .foot-disclaimer { max-width: 640px; font-size: 12px; line-height: 1.6; color: rgba(255,255,255,.4); }
+
+/* Land a little above the waitlist card when jumping to it */
+#join { scroll-margin-top: 24px; }
