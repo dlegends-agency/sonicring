@@ -74,6 +74,13 @@ function ScrollToTop() {
   return null
 }
 
+function StaticHomeRedirect() {
+  useEffect(() => {
+    window.location.replace('/' + window.location.search + window.location.hash)
+  }, [])
+  return null
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -82,8 +89,11 @@ function App() {
       <TrackingPixels />
       <Suspense fallback={null}>
         <Routes>
+          {/* "/" is the static 3D office page (public/index.html). If the app
+              navigates there client-side, reload so the server serves it. */}
+          <Route path="/" element={<StaticHomeRedirect />} />
           <Route
-            path="/"
+            path="/funnel"
             element={
               <div className="page">
                 <HomePage />
