@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- Google tag (GA4) + Facebook Pixel, same IDs as the main site -->
+<script src="../tracking.js"></script>
 <meta name="theme-color" content="#0d0f1c">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SEO &amp; Site Audit Report (Office Page) — SonicRing</title>
@@ -38,11 +40,11 @@
       <div class="ra-stat"><b>3/3</b><span>With OG Tags</span></div>
       <div class="ra-stat"><b>3/3</b><span>With Canonical</span></div>
       <div class="ra-stat"><b>3/3</b><span>Unique Titles</span></div>
-      <div class="ra-stat warn"><b>0/3</b><span>Trackers Loaded</span></div>
+      <div class="ra-stat"><b>2/3</b><span>Trackers Loaded</span></div>
     </div>
 
-    <div class="ra-callout ok"><i>✓</i><span>Unique per-page titles, descriptions, Open Graph + Twitter tags, canonicals, robots tags, square favicons and sitemap entries are in place for all 3 office pages.</span></div>
-    <div class="ra-callout warn"><i>⚠</i><span>Remaining: no analytics or ad pixels load on the office pages, the waitlist form isn't connected to a backend, and the strategy-session button has no booking link yet.</span></div>
+    <div class="ra-callout ok"><i>✓</i><span>Unique per-page titles, descriptions, Open Graph + Twitter tags, canonicals, robots tags, square favicons and sitemap entries are in place for all 3 office pages. GA4 and the Facebook Pixel load on every office page, with a Lead event on waitlist signup.</span></div>
+    <div class="ra-callout warn"><i>⚠</i><span>Remaining: the waitlist form isn't connected to a backend, the strategy-session button has no booking link yet, and Google Ads isn't configured (same as the main site).</span></div>
   </div>
 </section>
 
@@ -64,7 +66,7 @@
             <tr><td>6</td><td>Performance — 3D library</td><td>The un-minified three.js build was loaded from the CDN (1.31 MB).</td><td>Switched the import map to <code>three.module.min.js</code> (0.69 MB, about 47% smaller).</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>7</td><td>Legal pages</td><td>The footer linked to legal pages that didn't exist for this page.</td><td>Added standalone <code>/office/privacy-policy/</code> and <code>/office/terms-and-conditions/</code>, updated for the waitlist fields and text messaging.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>8</td><td>Legal pages — duplication</td><td>The React site also serves <code>/privacy-policy</code> and <code>/terms-and-conditions</code> with older wording, so two versions of each policy are live.</td><td>Pick one version: move the new wording into the React pages and point the office footer there, or retire the old ones.</td><td><span class="ra-badge ra-badge--review">Review</span></td></tr>
-            <tr><td>9</td><td>Tracking — analytics &amp; pixels</td><td>GA4, Facebook Pixel and Google Ads are loaded by the React app's <code>index.html</code>, which the static office pages don't use, so office traffic and waitlist signups aren't tracked.</td><td>Add the GA4 tag (and the pixels, if wanted) to the office pages, and fire a Lead event on waitlist submit.</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
+            <tr><td>9</td><td>Tracking — analytics &amp; pixels</td><td>GA4, Facebook Pixel and Google Ads are loaded by the React app's <code>index.html</code>, which the static office pages don't use, so office traffic and waitlist signups weren't tracked.</td><td>Added <code>/office/tracking.js</code> to all office pages: GA4 <code>G-2283FYD6CE</code> (automatic page_view), Facebook Pixel (PageView, ViewContent) and Lead + <code>generate_lead</code> on waitlist submit, with no personal data. IDs are written into the file, so if they change in <code>/admin/settings</code>, update them here too. Skipped on localhost.</td><td><span class="ra-badge ra-badge--done">Fixed</span></td></tr>
             <tr><td>10</td><td>Waitlist form</td><td>The form validates and shows a thank-you state but doesn't send the data anywhere.</td><td>Post signups to the existing Supabase contacts CRM (or a form service) before showing the success state.</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
             <tr><td>11</td><td>Primary CTA</td><td>"Book Your Free Strategy Session" links to <code>#</code>.</td><td>Replace with the real booking link (Calendly or similar).</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
             <tr><td>12</td><td>Image weight</td><td>The logo is a 315 KB PNG shown at about 76 px tall in the hero and 48 px in the footer.</td><td>Export a WebP/PNG at roughly 2× display size (about 20–40 KB).</td><td><span class="ra-badge ra-badge--open">Open</span></td></tr>
@@ -78,14 +80,14 @@
 
     <section class="ra-section">
       <h2>Tracking &amp; Analytics Codes</h2>
-      <p>Status on the static /office/ pages. The React site's tags don't carry over, because these pages don't load its <code>index.html</code>.</p>
+      <p>Status on the static /office/ pages, loaded by <code>/office/tracking.js</code> with the same IDs as the main site. Tracking is skipped on localhost so local testing doesn't add visits to the real analytics.</p>
       <div class="ra-table-wrap">
         <table class="ra-table">
           <thead><tr><th>Tool</th><th>ID / Tag</th><th>Script source</th><th>Status</th><th>Notes</th></tr></thead>
           <tbody>
-            <tr><td>Facebook Pixel</td><td>2400032310521798</td><td>connect.facebook.net/en_US/fbevents.js</td><td><span class="ra-badge ra-badge--open">Not loaded</span></td><td>Configured on the React site only. Add it to /office/ to track Lead on waitlist submit.</td></tr>
-            <tr><td>Google Analytics (GA4)</td><td>G-2283FYD6CE</td><td>googletagmanager.com/gtag/js</td><td><span class="ra-badge ra-badge--open">Not loaded</span></td><td>Site-wide on the React app via its index.html. Not present on the static office pages.</td></tr>
-            <tr><td>Google Ads</td><td>Set via /admin/settings</td><td>shares gtag.js with GA4</td><td><span class="ra-badge ra-badge--open">Not loaded</span></td><td>Not configured on the main site either.</td></tr>
+            <tr><td>Facebook Pixel</td><td>2400032310521798</td><td>connect.facebook.net/en_US/fbevents.js</td><td><span class="ra-badge ra-badge--done">Configured</span></td><td>Fires PageView and ViewContent on load and Lead on waitlist submit (business type only, no email or phone).</td></tr>
+            <tr><td>Google Analytics (GA4)</td><td>G-2283FYD6CE</td><td>googletagmanager.com/gtag/js</td><td><span class="ra-badge ra-badge--done">Active</span></td><td>Automatic page_view on every office page, plus a <code>generate_lead</code> event on waitlist submit.</td></tr>
+            <tr><td>Google Ads</td><td>Not set</td><td>shares gtag.js with GA4</td><td><span class="ra-badge ra-badge--open">Not configured</span></td><td>Ready in <code>tracking.js</code>: add the conversion ID and lead label once they exist (not configured on the main site either).</td></tr>
             <tr><td>Cloudflare Web Analytics</td><td>beacon.min.js</td><td>static.cloudflareinsights.com</td><td><span class="ra-badge ra-badge--review">Verify</span></td><td>Injected at the edge by Cloudflare when enabled for the site, so it should also cover /office/. Confirm after deploy.</td></tr>
           </tbody>
         </table>
@@ -126,7 +128,7 @@
           <tbody>
             <tr><td><span class="ra-badge ra-badge--high">High</span></td><td>Conversion</td><td>Waitlist signups aren't saved.</td><td>Connect the form to Supabase (contacts CRM) or a form service.</td></tr>
             <tr><td><span class="ra-badge ra-badge--high">High</span></td><td>Conversion</td><td>The strategy-session button goes nowhere.</td><td>Add the real booking link.</td></tr>
-            <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Tracking</td><td>No analytics or pixels on /office/.</td><td>Add GA4 (and the pixels, if wanted) with a Lead event on waitlist submit.</td></tr>
+            <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Tracking</td><td>The tracking IDs are copied into <code>tracking.js</code>, not read from <code>/admin/settings</code>.</td><td>Keep them in sync manually, or load the settings from Supabase if the office page moves into the React app.</td></tr>
             <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Performance</td><td>The 3D scene needs about 0.7 MB of three.js plus WebGL post-processing, which is heavy on low-end phones.</td><td>Measure with Lighthouse; if needed, lower the pixel ratio and turn off the glow on mobile, or show a still image there.</td></tr>
             <tr><td><span class="ra-badge ra-badge--med">Medium</span></td><td>Performance</td><td>The 315 KB logo PNG is used for small display sizes.</td><td>Export a right-sized WebP.</td></tr>
             <tr><td><span class="ra-badge ra-badge--low">Low</span></td><td>Reliability</td><td>three.js loads from the jsDelivr CDN at runtime.</td><td>Optionally self-host or bundle it through Vite so the page doesn't depend on a third-party CDN.</td></tr>
@@ -147,7 +149,7 @@
         <dt>robots.txt</dt><dd><code>public/robots.txt</code> (allows /office/)</dd>
         <dt>Favicon</dt><dd><code>/favicon-32x32.png</code> + <code>/apple-touch-icon.png</code> (shared with the main site)</dd>
         <dt>OG image</dt><dd><code>/images/og-image.png</code> (1200×630, shared with the main site)</dd>
-        <dt>Analytics</dt><dd>None loaded on /office/ yet</dd>
+        <dt>Analytics</dt><dd>GA4 + Facebook Pixel via <code>/office/tracking.js</code> — 2/3 configured (Google Ads not set)</dd>
         <dt>Forms</dt><dd>Early-access waitlist (business name, email, type, phone): client-side validation only</dd>
         <dt>Primary CTA</dt><dd>"Book Your Free Strategy Session" and "Reserve My Spot" (waitlist)</dd>
       </dl>
