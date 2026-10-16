@@ -1,0 +1,79 @@
+/* SonicRing demo call page (loaded after styles.css + legal.css) */
+.demo { padding: 56px 0 0; }
+.demo-grid { display: grid; grid-template-columns: 1fr 380px; gap: 56px; align-items: start; }
+.demo-intro h1 { font-size: clamp(34px, 4.4vw, 56px); line-height: 1.05; margin-top: 4px; }
+.demo-intro .lede { max-width: 520px; }
+.demo-form { max-width: 460px; margin-top: 32px; }
+.btn-ic { font-size: 18px; margin-right: 8px; }
+
+/* ---- Phone ---- */
+.phone-wrap { position: sticky; top: 100px; }
+.phone-ui {
+  position: relative; display: flex; flex-direction: column; height: 640px; padding: 22px 18px 18px;
+  border-radius: 44px; background: linear-gradient(180deg, #171a33, #0b0c18 70%);
+  border: 8px solid #262a40; box-shadow: 0 30px 80px rgba(0,0,0,.45), 0 0 0 1.5px rgba(139,60,255,.35);
+  overflow: hidden;
+}
+.ph-top { display: flex; justify-content: space-between; font: 600 12px var(--mono); color: var(--muted); padding: 0 8px; }
+.ph-timer { font-variant-numeric: tabular-nums; visibility: hidden; }
+.phone-ui[data-state="live"] .ph-timer, .phone-ui[data-state="ended"] .ph-timer { visibility: visible; }
+.phone-ui[data-state="live"] .ph-status { color: #22c55e; }
+
+.ph-caller { text-align: center; padding: 26px 0 10px; transition: padding .4s; }
+.phone-ui[data-state="live"] .ph-caller, .phone-ui[data-state="ended"] .ph-caller { padding-top: 6px; }
+.ph-avatar { position: relative; width: 88px; height: 88px; margin: 0 auto; border-radius: 50%; display: grid; place-items: center; background: var(--grad); transition: transform .4s; }
+.phone-ui[data-state="live"] .ph-avatar, .phone-ui[data-state="ended"] .ph-avatar { transform: scale(.72); }
+.ph-initial { position: relative; font-size: 36px; font-weight: 800; color: #fff; }
+.ph-ring { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(139,60,255,.7); opacity: 0; }
+.phone-ui[data-state="ringing"] .ph-ring { animation: ph-ring 1.6s ease-out infinite; }
+.phone-ui[data-state="ringing"] .r2 { animation-delay: .4s; }
+.phone-ui[data-state="ringing"] .r3 { animation-delay: .8s; }
+.phone-ui[data-state="ringing"] .ph-avatar { animation: ph-shake .5s ease-in-out infinite; }
+@keyframes ph-ring { 0% { transform: scale(1); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+@keyframes ph-shake { 0%, 100% { rotate: 0deg; } 25% { rotate: -6deg; } 75% { rotate: 6deg; } }
+.ph-name { margin-top: 12px; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.ph-sub { font-size: 13px; color: var(--muted); }
+
+.ph-wave { display: flex; gap: 4px; justify-content: center; align-items: center; height: 26px; margin-top: 8px; opacity: 0; transition: opacity .3s; }
+.ph-wave i { width: 4px; height: 6px; border-radius: 2px; background: var(--grad); }
+.phone-ui.speaking .ph-wave { opacity: 1; }
+.phone-ui.speaking .ph-wave i { animation: ph-bar .9s ease-in-out infinite; }
+.ph-wave i:nth-child(2) { animation-delay: .1s !important; } .ph-wave i:nth-child(3) { animation-delay: .25s !important; }
+.ph-wave i:nth-child(4) { animation-delay: .05s !important; } .ph-wave i:nth-child(5) { animation-delay: .3s !important; }
+.ph-wave i:nth-child(6) { animation-delay: .15s !important; } .ph-wave i:nth-child(7) { animation-delay: .2s !important; }
+@keyframes ph-bar { 50% { height: 24px; } }
+
+.ph-log { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 8px 4px; scroll-behavior: smooth; }
+.ph-msg { max-width: 86%; padding: 10px 13px; border-radius: 16px; font-size: 14px; line-height: 1.45; animation: pop .3s ease; }
+.ph-msg.ai { align-self: flex-start; background: rgba(255,255,255,.08); border-bottom-left-radius: 4px; }
+.ph-msg.ai b { display: block; font: 600 11px var(--mono); color: #8fd0ff; margin-bottom: 3px; }
+.ph-msg.you { align-self: flex-end; background: var(--grad); color: #fff; border-bottom-right-radius: 4px; }
+.ph-msg.sys { align-self: center; background: none; color: var(--muted); font: 600 11px var(--mono); padding: 2px; }
+
+.ph-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 2px 0; min-height: 0; }
+.ph-replies button {
+  padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(143,208,255,.35); background: rgba(25,211,255,.06);
+  color: #dff6ff; font: 600 12.5px var(--sans); cursor: pointer; transition: background .2s, transform .2s;
+}
+.ph-replies button:hover { background: rgba(25,211,255,.16); transform: translateY(-1px); }
+.ph-replies button:disabled { opacity: .4; cursor: default; transform: none; }
+
+.ph-actions { display: flex; justify-content: center; align-items: center; gap: 14px; padding-top: 14px; }
+.ph-hang { width: 58px; height: 58px; border-radius: 50%; border: 0; background: #ef4444; color: #fff; font-size: 26px; cursor: pointer; transform: rotate(135deg); transition: opacity .2s, transform .2s; }
+.ph-hang:disabled { opacity: .3; cursor: default; }
+.ph-mic { height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #fff; font: 600 13px var(--sans); cursor: pointer; }
+.ph-mic[aria-pressed="true"] { background: rgba(240,60,255,.2); border-color: var(--magenta); animation: online 1.4s infinite; }
+
+.demo-note { margin-top: 14px; font-size: 12px; line-height: 1.5; color: rgba(255,255,255,.45); text-align: center; }
+
+.demo-cta { margin-top: 96px; padding: 96px 0; text-align: center; background: var(--ink-2); border-top: 1px solid rgba(255,255,255,.06); }
+
+@media (max-width: 900px) {
+  .demo-grid { grid-template-columns: 1fr; gap: 36px; }
+  .phone-wrap { position: static; max-width: 380px; width: 100%; margin: 0 auto; }
+  .phone-ui { height: 600px; }
+  .demo-form { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .phone-ui .ph-ring, .phone-ui .ph-avatar, .phone-ui.speaking .ph-wave i { animation: none !important; }
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google tag (GA4) + Facebook Pixel, same IDs as the main site -->
+<script src="/office/tracking.js"></script>
+<meta name="theme-color" content="#0d0f1c">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hear Your AI Receptionist — SonicRing Demo</title>
+<link rel="canonical" href="https://sonicring.com/demo/">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Enter your business name and industry, and hear SonicRing's AI receptionist answer a call for your business.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SonicRing">
+<meta property="og:title" content="Hear Your AI Receptionist — SonicRing Demo">
+<meta property="og:description" content="Enter your business name and industry, and hear SonicRing's AI receptionist answer a call for your business.">
+<meta property="og:url" content="https://sonicring.com/demo/">
+<meta property="og:image" content="https://sonicring.com/images/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/office/styles.css">
+<link rel="stylesheet" href="/office/legal.css">
+<link rel="stylesheet" href="demo.css">
+</head>
+<body>
+
+<header class="legal-head">
+  <div class="container">
+    <a href="/"><img class="logo-img" src="/office/assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410"></a>
+    <a class="legal-back" href="/">← Back to home</a>
+  </div>
+</header>
+
+<main class="demo">
+  <div class="container demo-grid">
+    <section class="demo-intro">
+      <p class="kicker">Live demo</p>
+      <h1>Hear your AI receptionist <span class="w-grad">answer your phone.</span></h1>
+      <p class="lede">Enter your business name and industry. SonicRing rings once, picks up, and answers the way it would for your customers.</p>
+
+      <form class="demo-form early-form" id="demo-form" novalidate>
+        <label>Business Name
+          <input name="business" type="text" maxlength="60" placeholder="e.g. Grass Motion" autocomplete="organization" required>
+        </label>
+        <label>Industry
+          <select name="industry" required>
+            <option value="" selected disabled>Select your industry</option>
+          </select>
+        </label>
+        <label>Receptionist
+          <select name="receptionist">
+            <option value="Ava" selected>Ava</option>
+            <option value="Mia">Mia</option>
+            <option value="Leo">Leo</option>
+            <option value="Noah">Noah</option>
+          </select>
+        </label>
+        <button class="pill early-btn" type="submit"><span class="btn-ic" aria-hidden="true">☎</span> Start demo call</button>
+        <p class="early-fine">Turn your sound on. The call plays in your browser — nothing is dialed and nothing is stored.</p>
+      </form>
+    </section>
+
+    <section class="phone-wrap" aria-label="Demo call">
+      <div class="phone-ui" id="phone" data-state="idle">
+        <div class="ph-top">
+          <span class="ph-status" id="ph-status">Ready</span>
+          <span class="ph-timer" id="ph-timer">00:00</span>
+        </div>
+        <div class="ph-caller">
+          <div class="ph-avatar" id="ph-avatar">
+            <span class="ph-ring r1"></span><span class="ph-ring r2"></span><span class="ph-ring r3"></span>
+            <span class="ph-initial" id="ph-initial">A</span>
+          </div>
+          <p class="ph-name" id="ph-name">Your business</p>
+          <p class="ph-sub" id="ph-sub">AI receptionist · SonicRing</p>
+          <div class="ph-wave" id="ph-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="ph-log" id="ph-log" aria-live="polite"></div>
+        <div class="ph-replies" id="ph-replies"></div>
+        <div class="ph-actions">
+          <button type="button" class="ph-mic" id="ph-mic" hidden aria-pressed="false" title="Speak to the receptionist"><span aria-hidden="true">🎙</span> <span class="ph-mic-label">Tap to talk</span></button>
+          <button type="button" class="ph-hang" id="ph-hang" disabled aria-label="End call">✆</button>
+        </div>
+      </div>
+      <p class="demo-note">Demo preview: the greeting uses your details, and the follow-up answers are a sample script for your industry. Voice quality depends on your browser.</p>
+    </section>
+  </div>
+
+  <section class="demo-cta">
+    <div class="container narrow">
+      <h2 class="wl-title">Want this answering <span class="w-grad">your</span> phone?</h2>
+      <p class="lede">Join the waitlist and be one of the first businesses with a SonicRing workforce.</p>
+      <a class="pill cta" href="/#join">Join Waitlist →</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot foot-bottom">
+  <div class="container">
+    <div class="foot-legal">
+      <img class="logo-img logo-foot" src="/office/assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410">
+      <nav class="foot-links" aria-label="Legal">
+        <a href="/office/privacy-policy/">Privacy Policy</a>
+        <span aria-hidden="true">·</span>
+        <a href="/office/terms-and-conditions/">Terms &amp; Conditions</a>
+      </nav>
+      <p class="foot-copy">© 2026 SonicRing. All Rights Reserved.</p>
+      <p class="foot-disclaimer">This website is not a part of Facebook or Google. Additionally, this site is not endorsed by or affiliated to Facebook or Google. All brands shown on this site belong to its respective owners.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="demo.js"></script>
+</body>
+</html>
