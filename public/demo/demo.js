@@ -127,13 +127,25 @@
   }
   const lockReplies = (on) => replies.querySelectorAll("button").forEach((b) => (b.disabled = on));
 
+  // Short "typing…" pause before the receptionist replies, like a person thinking
+  async function think() {
+    const el = document.createElement("div");
+    el.className = "ph-msg ai ph-thinking";
+    el.innerHTML = '<span class="dots"><i></i><i></i><i></i></span>';
+    log.append(el);
+    log.scrollTop = log.scrollHeight;
+    await wait(700 + Math.random() * 500);
+    el.remove();
+  }
+
   async function answer(key, said) {
     if (!call || call.ended || call.busy) return;
     call.busy = true;
     lockReplies(true);
     addMsg("you", said);
     const intent = INTENTS[key];
-    await wait(450);
+    await think();
+    if (call.ended) return;
     const text = fill(intent.reply);
     addMsg("ai", text);
     await speak(text);
@@ -158,31 +170,59 @@
   }
 
   // ---------- Mic (optional) ----------
+  // Keeps listening while the caller talks and only replies after ~1.5 s of silence,
+  // so a pause between words doesn't cut them off. Tapping the mic again finishes early.
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const SILENCE_MS = 1500;
   let rec = null;
+  function setMicLabel(listening) {
+    micBtn.setAttribute("aria-pressed", String(listening));
+    micBtn.querySelector(".ph-mic-label").textContent = listening ? "Listening… tap when done" : "Tap to talk";
+  }
   function setupMic() {
     if (!SR) return;
     micBtn.hidden = false;
     micBtn.onclick = () => {
       if (!call || call.ended || call.busy) return;
-      if (rec) { rec.stop(); return; }
-      rec = new SR();
-      rec.lang = "en-US"; rec.interimResults = false; rec.maxAlternatives = 1;
-      micBtn.setAttribute("aria-pressed", "true");
-      micBtn.querySelector(".ph-mic-label").textContent = "Listening…";
-      rec.onresult = (e) => {
-        const said = e.results[0][0].transcript;
-        const key = intentFor(said);
-        if (key === "fallback") {
-          if (call.busy) return;
-          call.busy = true; lockReplies(true); addMsg("you", said);
-          const text = fill(INTENTS.fallback.reply);
-          wait(450).then(() => { addMsg("ai", text); return speak(text); }).then(() => { call.busy = false; setReplies(INTENTS.fallback.next); });
-        } else answer(key, said);
+      if (rec) { rec.finish(); return; }
+
+      const r = new SR();
+      r.lang = "en-US"; r.continuous = true; r.interimResults = true; r.maxAlternatives = 1;
+      let heard = "", silence = null, done = false, live = null;
+
+      const showLive = (text) => {
+        if (!live) {
+          live = document.createElement("div");
+          live.className = "ph-msg you ph-live";
+          log.append(live);
+        }
+        live.textContent = text;
+        log.scrollTop = log.scrollHeight;
       };
-      rec.onend = () => { rec = null; micBtn.setAttribute("aria-pressed", "false"); micBtn.querySelector(".ph-mic-label").textContent = "Tap to talk"; };
-      rec.onerror = rec.onend;
-      rec.start();
+      r.finish = () => {
+        if (done) return;
+        done = true;
+        clearTimeout(silence);
+        try { r.stop(); } catch {}
+        live?.remove();
+        const said = heard.trim();
+        if (!said || !call || call.ended) return;
+        const key = intentFor(said);
+        if (key !== "fallback") return answer(key, said);
+        answer("fallback", said); // unrecognized: a polite generic reply
+      };
+
+      r.onresult = (e) => {
+        heard = Array.from(e.results, (res) => res[0].transcript).join(" ").replace(/\s+/g, " ");
+        showLive(heard);
+        clearTimeout(silence);
+        silence = setTimeout(r.finish, SILENCE_MS);
+      };
+      r.onend = () => { rec = null; setMicLabel(false); r.finish(); };
+      r.onerror = (e) => { if (e.error === "no-speech" || e.error === "aborted") heard = heard || ""; };
+      rec = r;
+      setMicLabel(true);
+      r.start();
     };
   }
 
@@ -232,7 +272,7 @@
     call.ended = true;
     clearInterval(call.timer);
     synth?.cancel();
-    rec?.stop();
+    if (rec) { rec.onend = null; try { rec.stop(); } catch {} rec = null; setMicLabel(false); }
     phone.classList.remove("speaking");
     phone.dataset.state = "ended";
     statusEl.textContent = "Call ended";

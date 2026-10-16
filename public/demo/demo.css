@@ -77,3 +77,8 @@
 @media (prefers-reduced-motion: reduce) {
   .phone-ui .ph-ring, .phone-ui .ph-avatar, .phone-ui.speaking .ph-wave i { animation: none !important; }
 }
+
+/* Receptionist "thinking" and the caller's words appearing live while they speak */
+.ph-thinking { padding: 12px 14px; }
+.ph-thinking .dots i { background: rgba(255,255,255,.7); }
+.ph-msg.ph-live { opacity: .75; font-style: italic; }
