@@ -439,3 +439,8 @@ strong { color: var(--white); font-weight: 600; }
 
 /* Land a little above the waitlist card when jumping to it */
 #join { scroll-margin-top: 24px; }
+
+/* Demo link under the pricing cards */
+.price-demo { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 48px; text-align: center; }
+.price-demo p { color: var(--muted); font-size: 16px; max-width: 520px; }
+.price-demo-btn { height: 56px; font-size: 17px; gap: 10px; }
