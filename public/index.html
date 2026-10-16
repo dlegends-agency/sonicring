@@ -312,8 +312,9 @@
         <p class="early-sub">Fill out the form below and be the first to know when we launch.</p>
         <!-- TODO: connect to your email/CRM service (e.g. Formspree, Mailchimp, HubSpot). Right now it only shows a thank-you message. -->
         <form class="early-form" id="waitlist-form" novalidate>
+          <label>Work Email<input name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" required></label>
+          <label>Phone Number<input name="phone" type="tel" autocomplete="tel" required></label>
           <label>Business Name<input name="business_name" type="text" autocomplete="organization" required></label>
-          <label>Business Email<input name="email" type="email" autocomplete="email" required></label>
           <label>Business Type
             <select name="business_type" required>
               <option value="" selected disabled>Select your business type</option>
@@ -322,7 +323,15 @@
               <option>Other</option>
             </select>
           </label>
-          <label>Phone Number<input name="phone" type="tel" autocomplete="tel" required></label>
+          <label>Plan Interest
+            <select name="plan_interest" required>
+              <option value="not_sure" selected>Not sure yet</option>
+              <option value="starter">Starter - Up to 5 AI Employees - $299/mo</option>
+              <option value="growth">Growth - Up to 8 AI Employees - $499/mo</option>
+              <option value="pro">Pro - Up to 10 AI Employees - $799/mo</option>
+              <option value="enterprise">Enterprise - Custom</option>
+            </select>
+          </label>
           <button class="pill early-btn" type="submit">Reserve My Spot</button>
           <p class="early-fine">No spam. We will only send important SonicRing updates.</p>
         </form>
