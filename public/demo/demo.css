@@ -59,7 +59,9 @@
 .ph-replies button:disabled { opacity: .4; cursor: default; transform: none; }
 
 .ph-actions { display: flex; justify-content: center; align-items: center; gap: 14px; padding-top: 14px; }
-.ph-hang { width: 58px; height: 58px; border-radius: 50%; border: 0; background: #ef4444; color: #fff; font-size: 26px; cursor: pointer; transform: rotate(135deg); transition: opacity .2s, transform .2s; }
+.ph-hang { width: 58px; height: 58px; border-radius: 50%; border: 0; background: #ef4444; color: #fff; display: grid; place-items: center; cursor: pointer; box-shadow: 0 8px 20px rgba(239,68,68,.35); transition: opacity .2s, transform .2s, background .2s; }
+.ph-hang:not(:disabled):hover { background: #dc2626; transform: scale(1.06); }
+.ph-hang svg { display: block; }
 .ph-hang:disabled { opacity: .3; cursor: default; }
 .ph-mic { height: 46px; padding: 0 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #fff; font: 600 13px var(--sans); cursor: pointer; }
 .ph-mic[aria-pressed="true"] { background: rgba(240,60,255,.2); border-color: var(--magenta); animation: online 1.4s infinite; }
