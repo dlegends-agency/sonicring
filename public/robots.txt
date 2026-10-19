@@ -4,5 +4,6 @@ Disallow: /admin
 Disallow: /checkout
 Disallow: /onboarding
 Disallow: /mission-control
+Disallow: /office/admin
 
 Sitemap: https://sonicring.com/sitemap.xml

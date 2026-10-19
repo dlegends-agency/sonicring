@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="theme-color" content="#0d0f1c">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin — SonicRing</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body class="adm">
+
+<!-- ============ LOGIN ============ -->
+<main class="adm-login" id="login-view">
+  <form class="adm-login-card early-form" id="login-form" novalidate>
+    <img class="logo-img" src="../assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410">
+    <h1>Admin sign in</h1>
+    <p class="adm-sub">Sign in to manage your SonicRing site.</p>
+    <label>Username<input name="username" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" required></label>
+    <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+    <p class="adm-error" id="login-error" role="alert" hidden>Incorrect username or password.</p>
+    <button class="pill early-btn" type="submit">Sign in</button>
+    <a class="adm-home" href="/">← Back to site</a>
+  </form>
+</main>
+
+<!-- ============ DASHBOARD ============ -->
+<div class="adm-app" id="app-view" hidden>
+  <aside class="adm-side">
+    <img class="logo-img" src="../assets/sonicring-logo.png" alt="SonicRing" width="1224" height="410">
+    <nav class="adm-nav" aria-label="Admin">
+      <button type="button" data-view="overview" class="active">Overview</button>
+      <button type="button" data-view="waitlist">Waitlist</button>
+      <button type="button" data-view="demos">Demo calls</button>
+      <button type="button" data-view="settings">Settings</button>
+    </nav>
+    <div class="adm-user">
+      <span class="adm-avatar">A</span>
+      <div><b>Admin</b><small>Signed in</small></div>
+      <button type="button" id="logout" class="adm-logout">Log out</button>
+    </div>
+  </aside>
+
+  <main class="adm-main">
+    <div class="adm-banner"><b>No database connected yet.</b> Everything below is a layout preview — waitlist signups and demo calls will appear here once a database is set up.</div>
+
+    <section class="adm-view" data-view="overview">
+      <h2>Overview</h2>
+      <div class="adm-stats">
+        <div class="adm-stat"><span>Waitlist signups</span><b>—</b></div>
+        <div class="adm-stat"><span>Demo calls</span><b>—</b></div>
+        <div class="adm-stat"><span>Most wanted plan</span><b>—</b></div>
+        <div class="adm-stat"><span>Top industry</span><b>—</b></div>
+      </div>
+      <div class="adm-card">
+        <h3>Recent activity</h3>
+        <p class="adm-empty">No activity yet. New signups and demo calls will show up here.</p>
+      </div>
+    </section>
+
+    <section class="adm-view" data-view="waitlist" hidden>
+      <h2>Waitlist</h2>
+      <div class="adm-card adm-table-wrap">
+        <table class="adm-table">
+          <thead><tr><th>Date</th><th>Work email</th><th>Phone</th><th>Business</th><th>Type</th><th>Plan interest</th></tr></thead>
+          <tbody><tr><td colspan="6" class="adm-empty">No signups yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="adm-view" data-view="demos" hidden>
+      <h2>Demo calls</h2>
+      <div class="adm-card adm-table-wrap">
+        <table class="adm-table">
+          <thead><tr><th>Date</th><th>Business</th><th>Industry</th><th>Receptionist</th><th>Length</th></tr></thead>
+          <tbody><tr><td colspan="5" class="adm-empty">No demo calls recorded yet.</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="adm-view" data-view="settings" hidden>
+      <h2>Settings</h2>
+      <div class="adm-card">
+        <h3>Tracking</h3>
+        <dl class="adm-dl">
+          <dt>Google Analytics (GA4)</dt><dd>G-2283FYD6CE</dd>
+          <dt>Facebook Pixel</dt><dd>2400032310521798</dd>
+          <dt>Google Ads</dt><dd>Not configured</dd>
+        </dl>
+        <p class="adm-empty">These are set in <code>/office/tracking.js</code>. They'll be editable here once a database is connected.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
