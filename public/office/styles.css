@@ -583,11 +583,11 @@ strong { color: var(--white); font-weight: 600; }
 .tc-skills li { background: color-mix(in srgb, var(--c1) 16%, transparent); color: color-mix(in srgb, var(--c1) 55%, #fff); border: 1px solid color-mix(in srgb, var(--c1) 35%, transparent); }
 .tc-status { color: rgba(255,255,255,.55); }
 
-/* Maya: keep her face and the panels in frame */
-.tc-photo-maya { object-position: 52% 35%; }
 
 .tc-photo-alex { object-position: 50% 30%; }
 
 .tc-photo-dani { object-position: 50% 30%; }
 
 .tc-photo-chloe { object-position: 50% 30%; }
+
+.tc-photo-maya-v2 { object-position: 50% 30%; }
