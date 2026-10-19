@@ -444,3 +444,79 @@ strong { color: var(--white); font-weight: 600; }
 .price-demo { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 48px; text-align: center; }
 .price-demo p { color: var(--muted); font-size: 16px; max-width: 520px; }
 .price-demo-btn { height: 56px; font-size: 17px; gap: 10px; }
+
+/* ===== War Room ===== */
+.warroom { padding: 120px 0; }
+.wr-grid { display: grid; grid-template-columns: 1fr 440px; gap: 64px; align-items: center; }
+.wr-points { list-style: none; display: grid; gap: 18px; margin-top: 32px; }
+.wr-points li { padding-left: 18px; border-left: 2px solid rgba(139,60,255,.5); }
+.wr-points b { display: block; font-size: 17px; }
+.wr-points span { color: var(--muted); font-size: 15px; }
+.wr-panel {
+  display: flex; flex-direction: column; height: 520px; border-radius: 26px; overflow: hidden;
+  background: linear-gradient(180deg, #171a33, #0f1122); border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 0 0 1.5px rgba(139,60,255,.35), 0 30px 70px rgba(0,0,0,.4);
+}
+.wr-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px; border-bottom: 1px solid rgba(255,255,255,.07); }
+.wr-head b { display: block; font-size: 15px; }
+.wr-head small { display: flex; align-items: center; gap: 6px; font: 600 11px var(--mono); color: var(--muted); }
+.wr-head small i { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,.6); animation: online 1.8s infinite; }
+.wr-avatars { display: flex; }
+.wr-avatars span { width: 28px; height: 28px; margin-left: -8px; border-radius: 50%; display: grid; place-items: center; font: 800 12px var(--sans); color: #0d0f1c; background: var(--c); border: 2px solid #171a33; }
+.wr-avatars span:first-child { margin-left: 0; }
+.wr-feed { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; padding: 16px; overflow: hidden; transition: opacity .4s; }
+.wr-feed.fade { opacity: 0; }
+.wr-msg { display: flex; gap: 10px; align-items: flex-start; animation: pop .35s ease; }
+.wr-msg .av { flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font: 800 12px var(--sans); color: #0d0f1c; background: var(--c); }
+.wr-msg .bub { padding: 9px 12px; border-radius: 14px; border-top-left-radius: 4px; background: rgba(255,255,255,.07); font-size: 13.5px; line-height: 1.45; }
+.wr-msg .bub b { display: block; font: 600 11px var(--mono); color: var(--c); margin-bottom: 2px; }
+.wr-msg .tag { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 999px; font: 600 10.5px var(--mono); background: rgba(139,60,255,.25); color: #e3d4ff; }
+.wr-msg.you { flex-direction: row-reverse; }
+.wr-msg.you .bub { background: var(--grad); color: #fff; border-top-left-radius: 14px; border-top-right-radius: 4px; }
+.wr-msg.you .bub b { color: rgba(255,255,255,.85); }
+.wr-typing .bub { padding: 12px 14px; }
+.wr-typing .dots i { background: rgba(255,255,255,.7); }
+.wr-input { display: flex; justify-content: space-between; align-items: center; margin: 0 14px 14px; padding: 12px 14px; border-radius: 14px; background: rgba(255,255,255,.05); color: rgba(255,255,255,.4); font-size: 13.5px; }
+.wr-input b { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--grad); color: #fff; }
+
+/* ===== Core team: sticky stacking cards ===== */
+.team { padding: 120px 0 80px; }
+.team-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
+.team-head .kicker { margin-left: auto; margin-right: auto; }
+.team-stack { position: relative; perspective: 1400px; padding-bottom: 12vh; }
+.team-card { position: sticky; top: calc(96px + var(--i) * 16px); height: min(460px, 72vh); margin-bottom: 18vh; }
+.team-card:last-child { margin-bottom: 0; }
+.tc-inner {
+  height: 100%; display: grid; grid-template-columns: 1.05fr 1fr; gap: 0; overflow: hidden;
+  border-radius: 32px; background: #fbfaff; color: var(--ink);
+  box-shadow: 0 -12px 40px rgba(0,0,0,.25), 0 30px 60px rgba(0,0,0,.3);
+  transform-origin: 50% 0; will-change: transform, filter;
+}
+.tc-visual { position: relative; overflow: hidden; background: radial-gradient(120% 90% at 30% 20%, var(--c1), var(--c2)); }
+.tc-cover { position: absolute; inset: 0; display: grid; place-items: center; transform: scale(var(--zoom, 1)); will-change: transform; }
+.tc-bot { width: min(62%, 300px); height: auto; filter: drop-shadow(0 18px 30px rgba(0,0,0,.25)); animation: bob 3.2s ease-in-out infinite; }
+.tc-icon { position: absolute; right: 26px; top: 26px; width: 48px; height: 48px; border-radius: 16px; display: grid; place-items: center; background: rgba(13,15,28,.28); backdrop-filter: blur(6px); }
+.tc-body { padding: 40px 40px 34px; display: flex; flex-direction: column; }
+.tc-num { font: 600 12px var(--mono); color: rgba(13,15,28,.4); }
+.tc-body h3 { font-size: clamp(36px, 4vw, 52px); letter-spacing: -.04em; margin-top: 10px; }
+.tc-role { font-weight: 600; color: color-mix(in srgb, var(--c2) 75%, #0d0f1c); margin-top: 6px; }
+.tc-blurb { margin-top: 18px; color: rgba(13,15,28,.7); font-size: 16px; line-height: 1.6; }
+.tc-skills { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.tc-skills li { padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 600; background: color-mix(in srgb, var(--c1) 22%, #fff); color: #0d0f1c; }
+.tc-status { margin-top: auto; display: flex; align-items: center; gap: 8px; font: 600 12px var(--mono); color: rgba(13,15,28,.55); }
+.tc-status i { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 0 0 rgba(34,197,94,.6); animation: online 1.8s infinite; }
+
+@media (max-width: 900px) {
+  .wr-grid { grid-template-columns: 1fr; gap: 40px; }
+  .wr-panel { height: 480px; }
+  .team-card { top: calc(72px + var(--i) * 10px); height: min(560px, 78vh); margin-bottom: 14vh; }
+  .tc-inner { grid-template-columns: 1fr; grid-template-rows: 42% 1fr; }
+  .tc-body { padding: 22px 22px 20px; }
+  .tc-body h3 { font-size: 32px; margin-top: 4px; }
+  .tc-blurb { font-size: 14.5px; margin-top: 10px; }
+  .tc-skills { margin-top: 12px; }
+  .tc-icon { right: 16px; top: 16px; width: 40px; height: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tc-bot { animation: none; }
+}

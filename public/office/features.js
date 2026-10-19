@@ -220,3 +220,104 @@
   });
   form.addEventListener("input", (e) => e.target.closest("label")?.classList.remove("invalid"));
 })();
+
+// ---- War Room: agents (and the owner) coordinate, message by message ----
+(() => {
+  const panel = document.querySelector('[data-anim="warroom"]');
+  if (!panel) return;
+  const feed = panel.querySelector(".wr-feed");
+  const P = {
+    G: ["Grant", "Strategy", "#ffd21f"], M: ["Maya", "Receptionist", "#36d6ff"], A: ["Alex", "Sales", "#2fd06a"],
+    D: ["Dani", "Marketing", "#ff7fc8"], C: ["Chloe", "Sales", "#a99bff"], Y: ["You", "Owner", ""],
+  };
+  const SCRIPT = [
+    ["M", "New lead from a missed-call text: kitchen leak, wants someone this week. Booked for Thursday 9:30 AM."],
+    ["G", "Prediction: Thursday looks busier than usual. Let's open two extra slots in the afternoon.", "AI prediction"],
+    ["A", "On it. I'll follow up the 3 open quotes from last week and offer them Thursday."],
+    ["D", "I'll text past customers about the open Thursday slots."],
+    ["Y", "Love it. Approve the text."],
+    ["D", "Approved ✓ Sending at 10 AM."],
+    ["C", "And I'll offer the Thursday leak repair a yearly check-up while we're there."],
+  ];
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+  const make = (who, html, cls = "") => {
+    const [name, role, color] = P[who];
+    const el = document.createElement("div");
+    el.className = "wr-msg " + cls + (who === "Y" ? " you" : "");
+    if (color) el.style.setProperty("--c", color);
+    el.innerHTML = `<span class="av">${who === "Y" ? "Y" : name[0]}</span><div class="bub"><b>${name} · ${role}</b></div>`;
+    if (html) el.querySelector(".bub").append(html);
+    feed.append(el);
+    while (feed.children.length > 6) feed.firstElementChild.remove();
+    return el;
+  };
+  const say = (who, text, tag) => {
+    const frag = document.createDocumentFragment();
+    frag.append(document.createTextNode(text));
+    if (tag) { const t = document.createElement("span"); t.className = "tag"; t.textContent = "⚡ " + tag; frag.append(document.createElement("br"), t); }
+    return make(who, frag);
+  };
+  if (reduce) { SCRIPT.slice(-5).forEach(([w, t, g]) => say(w, t, g)); return; }
+
+  let on = false, running = false;
+  new IntersectionObserver(([e]) => {
+    on = e.isIntersecting;
+    if (on && !running) { running = true; loop().finally(() => (running = false)); }
+  }, { threshold: 0.3 }).observe(panel);
+
+  async function loop() {
+    while (on) {
+      for (const [who, text, tag] of SCRIPT) {
+        if (!on) return;
+        if (who !== "Y") {
+          const dots = document.createElement("span");
+          dots.className = "dots"; dots.innerHTML = "<i></i><i></i><i></i>";
+          const typing = make(who, dots, "wr-typing");
+          await wait(900 + Math.random() * 500);
+          typing.remove();
+        } else await wait(700);
+        say(who, text, tag);
+        await wait(1500 + text.length * 18);
+      }
+      await wait(2500);
+      feed.classList.add("fade");
+      await wait(450);
+      feed.replaceChildren();
+      feed.classList.remove("fade");
+    }
+  }
+})();
+
+// ---- Core team: cards pin and pile up; buried cards shrink back with a slight 3D lean ----
+(() => {
+  const cards = [...document.querySelectorAll(".team-card")];
+  if (!cards.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const inners = cards.map((c) => c.querySelector(".tc-inner"));
+  const covers = cards.map((c) => c.querySelector(".tc-cover"));
+  const clamp = (v) => Math.min(1, Math.max(0, v));
+  let queued = false;
+  function update() {
+    queued = false;
+    const vh = innerHeight;
+    // How far each card has slid into its pinned spot (0 = just entering, 1 = pinned)
+    const arrive = cards.map((c) => {
+      const top = c.getBoundingClientRect().top;
+      const pin = parseFloat(getComputedStyle(c).top) || 0;
+      return clamp((vh - top) / (vh - pin));
+    });
+    cards.forEach((c, i) => {
+      let depth = 0; // how many cards now sit on top of this one
+      for (let j = i + 1; j < cards.length; j++) depth += arrive[j];
+      const lean = Math.min(depth, 1);
+      inners[i].style.transform = `translateY(${-depth * 6}px) scale(${1 - depth * 0.045}) rotateX(${lean * 5}deg)`;
+      inners[i].style.filter = `brightness(${1 - Math.min(depth, 3) * 0.12})`;
+      // The cover zooms to life as its card arrives
+      covers[i].style.setProperty("--zoom", (1.18 - 0.18 * arrive[i]).toFixed(3));
+    });
+  }
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener("scroll", queue, { passive: true });
+  addEventListener("resize", queue);
+  update();
+})();
