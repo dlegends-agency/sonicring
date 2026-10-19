@@ -569,3 +569,16 @@ strong { color: var(--white); font-weight: 600; }
 /* Team card with a photo instead of the illustrated agent */
 .tc-visual.tc-has-photo { background: #0d0f1c; }
 .tc-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+
+/* Team cards: dark theme */
+.tc-inner {
+  background: linear-gradient(160deg, #1b1f38 0%, #11132a 55%, #0d0f1c 100%); color: var(--white);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--c1) 35%, transparent), 0 -12px 40px rgba(0,0,0,.35), 0 30px 60px rgba(0,0,0,.45);
+}
+.tc-body { background: radial-gradient(120% 80% at 100% 0%, color-mix(in srgb, var(--c1) 12%, transparent), transparent 60%); }
+.tc-num { color: rgba(255,255,255,.4); }
+.tc-body h3 { color: var(--white); }
+.tc-role { color: color-mix(in srgb, var(--c1) 85%, #fff); }
+.tc-blurb { color: rgba(255,255,255,.72); }
+.tc-skills li { background: color-mix(in srgb, var(--c1) 16%, transparent); color: color-mix(in srgb, var(--c1) 55%, #fff); border: 1px solid color-mix(in srgb, var(--c1) 35%, transparent); }
+.tc-status { color: rgba(255,255,255,.55); }
