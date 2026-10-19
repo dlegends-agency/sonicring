@@ -228,7 +228,7 @@
   const feed = panel.querySelector(".wr-feed");
   const P = {
     G: ["Grant", "Strategy", "#ffd21f"], M: ["Maya", "Receptionist", "#36d6ff"], A: ["Alex", "Sales", "#2fd06a"],
-    D: ["Dani", "Marketing", "#ff7fc8"], C: ["Chloe", "Sales", "#a99bff"], Y: ["You", "Owner", ""],
+    D: ["Dani", "Marketing", "#ff7fc8"], C: ["Chloe", "Support", "#a99bff"], Y: ["You", "Owner", ""],
   };
   const SCRIPT = [
     ["M", "New lead from a missed-call text: kitchen leak, wants someone this week. Booked for Thursday 9:30 AM."],
@@ -237,7 +237,7 @@
     ["D", "I'll text past customers about the open Thursday slots."],
     ["Y", "Love it. Approve the text."],
     ["D", "Approved ✓ Sending at 10 AM."],
-    ["C", "And I'll offer the Thursday leak repair a yearly check-up while we're there."],
+    ["C", "I'll check in with this week's customers and make sure every job went smoothly."],
   ];
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const wait = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -319,6 +319,8 @@
   const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
   addEventListener("scroll", queue, { passive: true });
   addEventListener("resize", queue);
+  // Lazy-loaded photos: refresh the stack once each one arrives so it's painted straight away
+  document.querySelectorAll(".team-card .tc-photo").forEach((img) => img.complete || img.addEventListener("load", queue, { once: true }));
   update();
 })();
 
