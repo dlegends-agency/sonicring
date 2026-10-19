@@ -520,3 +520,48 @@ strong { color: var(--white); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   .tc-bot { animation: none; }
 }
+
+/* ===== Floating demo widget (homepage) ===== */
+.fdemo { position: fixed; right: 20px; bottom: 20px; z-index: 60; font-family: var(--sans); }
+.fdemo-toggle {
+  display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 22px; border: 0; border-radius: 999px; cursor: pointer;
+  background: var(--grad); color: #fff; font: 600 15px var(--sans); box-shadow: 0 14px 34px rgba(139,60,255,.45);
+  opacity: 0; transform: translateY(20px) scale(.96); pointer-events: none; transition: opacity .35s, transform .35s;
+}
+.fdemo.show .fdemo-toggle { opacity: 1; transform: none; pointer-events: auto; }
+.fdemo.open .fdemo-toggle { opacity: 0; pointer-events: none; }
+.fdemo-toggle:hover { transform: translateY(-2px); }
+.fdemo-dot { width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 0 rgba(255,255,255,.7); animation: online 1.6s infinite; }
+.fdemo-panel {
+  position: absolute; right: 0; bottom: 0; width: 380px; max-height: calc(100vh - 40px); overflow-y: auto;
+  display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 26px;
+  background: linear-gradient(180deg, #171a33, #0d0f1c); border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 0 0 1.5px rgba(139,60,255,.4), 0 30px 80px rgba(0,0,0,.55);
+  transform-origin: 100% 100%; animation: fdemo-in .3s cubic-bezier(.2,.8,.2,1);
+}
+@keyframes fdemo-in { from { opacity: 0; transform: translateY(14px) scale(.96); } }
+.fdemo-panel[hidden] { display: none; }
+.fdemo-head { display: flex; align-items: flex-start; gap: 10px; }
+.fdemo-title { flex: 1; }
+.fdemo-title b { display: block; font-size: 16px; }
+.fdemo-title small { font-size: 12.5px; color: var(--muted); }
+.fdemo-close { width: 34px; height: 34px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); color: #fff; font-size: 22px; line-height: 1; cursor: pointer; }
+.fdemo-back { border: 0; background: none; color: #8fd0ff; font: 600 13px var(--sans); cursor: pointer; padding: 6px 0; }
+.fdemo.calling .fdemo-title { display: none; }
+.fdemo-form { margin-top: 0; gap: 12px; }
+.fdemo-form .early-fine { text-align: left; }
+.fdemo-row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; }
+.fdemo .phone-ui { display: none; height: auto; flex: none; padding: 16px 14px 14px; border-width: 0; border-radius: 20px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); }
+.fdemo .ph-caller { padding: 4px 0 0; }
+.fdemo .ph-log { flex: none; height: clamp(130px, calc(100vh - 470px), 260px); }
+.fdemo .ph-actions { padding-top: 12px; }
+.fdemo.calling .phone-ui { display: flex; }
+.fdemo.calling .fdemo-form { display: none; }
+.fdemo-note { font-size: 12px; color: rgba(255,255,255,.45); text-align: center; }
+.fdemo-note a { color: #8fd0ff; }
+@media (max-width: 600px) {
+  .fdemo { right: 12px; bottom: 12px; }
+  .fdemo-toggle { height: 50px; padding: 0 18px; font-size: 14px; }
+  .fdemo-panel { position: fixed; left: 8px; right: 8px; bottom: 8px; width: auto; max-height: calc(100vh - 16px); border-radius: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .fdemo-panel { animation: none; } .fdemo-dot { animation: none; } }

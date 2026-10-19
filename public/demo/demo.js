@@ -243,7 +243,7 @@
     phone.dataset.state = "ringing";
     statusEl.textContent = "Calling " + biz + "…";
     hangBtn.disabled = false;
-    phone.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (!phone.closest(".fdemo")) phone.scrollIntoView({ behavior: "smooth", block: "center" });
     window.gtag?.("event", "demo_call", { industry: indKey });
     window.fbq?.("trackCustom", "DemoCall", { industry: indKey });
 

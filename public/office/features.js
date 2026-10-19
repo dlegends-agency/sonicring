@@ -321,3 +321,47 @@
   addEventListener("resize", queue);
   update();
 })();
+
+// ---- Floating demo widget: the /demo/ call in a panel (demo.js runs the call itself) ----
+(() => {
+  const root = document.getElementById("fdemo");
+  if (!root) return;
+  const toggle = document.getElementById("fdemo-toggle");
+  const panel = document.getElementById("fdemo-panel");
+  const phone = document.getElementById("phone");
+  const back = document.getElementById("fdemo-back");
+  const hang = () => { const b = document.getElementById("ph-hang"); if (b && !b.disabled) b.click(); };
+
+  // Show the button once the visitor scrolls past the hero
+  const onScroll = () => root.classList.toggle("show", scrollY > innerHeight * 0.7);
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  const open = () => {
+    panel.hidden = false;
+    root.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+    if (!root.classList.contains("calling")) panel.querySelector("input")?.focus({ preventScroll: true });
+  };
+  const close = () => {
+    hang();
+    panel.hidden = true;
+    root.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.focus({ preventScroll: true });
+  };
+  toggle.addEventListener("click", open);
+  document.getElementById("fdemo-close").addEventListener("click", close);
+  addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) close(); });
+
+  // Swap the form for the phone once a call starts; "Change details" goes back
+  new MutationObserver(() => {
+    const calling = phone.dataset.state !== "idle";
+    root.classList.toggle("calling", calling);
+    back.hidden = !calling;
+  }).observe(phone, { attributes: true, attributeFilter: ["data-state"] });
+  back.addEventListener("click", () => {
+    hang();
+    phone.dataset.state = "idle";
+  });
+})();

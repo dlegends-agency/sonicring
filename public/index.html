@@ -29,6 +29,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;800&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/office/styles.css">
+<link rel="stylesheet" href="/demo/demo.css">
 </head>
 <body>
 
@@ -556,7 +557,68 @@
   </div>
 </footer>
 
+<!-- ============ FLOATING DEMO (uses /demo/demo.js) ============ -->
+<div class="fdemo" id="fdemo">
+  <button type="button" class="fdemo-toggle" id="fdemo-toggle" aria-expanded="false" aria-controls="fdemo-panel">
+    <span class="fdemo-dot" aria-hidden="true"></span><span aria-hidden="true">☎</span> Hear your AI receptionist
+  </button>
+  <div class="fdemo-panel" id="fdemo-panel" role="dialog" aria-label="Live demo call" hidden>
+    <div class="fdemo-head">
+      <button type="button" class="fdemo-back" id="fdemo-back" hidden>← Change details</button>
+      <div class="fdemo-title"><b>Live demo</b><small>Hear SonicRing answer for your business</small></div>
+      <button type="button" class="fdemo-close" id="fdemo-close" aria-label="Close demo">×</button>
+    </div>
+    <form class="demo-form early-form fdemo-form" id="demo-form" novalidate>
+      <label>Business Name
+        <input name="business" type="text" maxlength="60" placeholder="e.g. Grass Motion" autocomplete="organization" required>
+      </label>
+      <div class="fdemo-row">
+        <label>Industry
+          <select name="industry" required>
+            <option value="" selected disabled>Select</option>
+          </select>
+        </label>
+        <label>Receptionist
+          <select name="receptionist">
+            <option value="Ava" selected>Ava</option>
+            <option value="Mia">Mia</option>
+            <option value="Leo">Leo</option>
+            <option value="Noah">Noah</option>
+          </select>
+        </label>
+      </div>
+      <button class="pill early-btn" type="submit"><span class="btn-ic" aria-hidden="true">☎</span> Start demo call</button>
+      <p class="early-fine">Turn your sound on. Plays in your browser — nothing is dialed or stored.</p>
+    </form>
+    <div class="phone-ui" id="phone" data-state="idle">
+      <div class="ph-top">
+        <span class="ph-status" id="ph-status">Ready</span>
+        <span class="ph-timer" id="ph-timer">00:00</span>
+      </div>
+      <div class="ph-caller">
+        <div class="ph-avatar" id="ph-avatar">
+          <span class="ph-ring r1"></span><span class="ph-ring r2"></span><span class="ph-ring r3"></span>
+          <span class="ph-initial" id="ph-initial">A</span>
+        </div>
+        <p class="ph-name" id="ph-name">Your business</p>
+        <p class="ph-sub" id="ph-sub">AI receptionist · SonicRing</p>
+        <div class="ph-wave" id="ph-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="ph-log" id="ph-log" aria-live="polite"></div>
+      <div class="ph-replies" id="ph-replies"></div>
+      <div class="ph-actions">
+        <button type="button" class="ph-mic" id="ph-mic" hidden aria-pressed="false" title="Speak to the receptionist"><span aria-hidden="true">🎙</span> <span class="ph-mic-label">Tap to talk</span></button>
+        <button type="button" class="ph-hang" id="ph-hang" disabled aria-label="End call">
+          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 8.5c-3.9 0-7.4 1.3-9.7 3.5a1.4 1.4 0 0 0 0 2l1.9 1.9a1.4 1.4 0 0 0 1.8.1l2.2-1.6a1.4 1.4 0 0 0 .6-1.2l-.1-1.8a12 12 0 0 1 6.6 0l-.1 1.8a1.4 1.4 0 0 0 .6 1.2l2.2 1.6a1.4 1.4 0 0 0 1.8-.1l1.9-1.9a1.4 1.4 0 0 0 0-2C19.4 9.8 15.9 8.5 12 8.5Z"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="fdemo-note">Sample script after the greeting. <a href="/demo/">Open the full demo →</a></p>
+  </div>
+</div>
+
 <script src="/office/features.js" defer></script>
+<script src="/demo/demo.js" defer></script>
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js",
