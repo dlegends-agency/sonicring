@@ -593,3 +593,78 @@ strong { color: var(--white); font-weight: 600; }
 .tc-photo-maya-v2 { object-position: 50% 30%; }
 
 .tc-photo-grant-v3 { object-position: 50% 30%; }
+
+/* ===== Testimonials (ported from the React funnel) ===== */
+.foot-early { padding-top: 8px; }
+.tst { position: relative; overflow: hidden; padding: 96px 0 72px; }
+.tst-head { position: relative; z-index: 1; text-align: center; margin-bottom: 36px; }
+.tst-head .lede { max-width: 640px; margin-left: auto; margin-right: auto; }
+.tst-marquee { position: relative; z-index: 1; display: grid; gap: 14px; }
+.tst-row { position: relative; overflow: hidden; }
+.tst-edge { position: absolute; top: 0; z-index: 2; width: min(32vw, 220px); height: 100%; pointer-events: none; }
+.tst-edge--left { left: 0; background: linear-gradient(90deg, var(--ink) 0%, rgba(13,15,28,.85) 40%, rgba(13,15,28,0) 100%); }
+.tst-edge--right { right: 0; background: linear-gradient(270deg, var(--ink) 0%, rgba(13,15,28,.85) 40%, rgba(13,15,28,0) 100%); }
+.tst-track { --segments: 6; display: flex; gap: 14px; width: max-content; animation: tst-scroll 44s linear infinite; }
+.tst-track--right { animation-direction: reverse; }
+.tst-track:hover { animation-play-state: paused; }
+@keyframes tst-scroll { to { transform: translateX(calc(-100% / var(--segments, 6))); } }
+
+.tst-card {
+  flex: 0 0 360px; width: 360px; padding: 14px 16px 10px; border-radius: 12px; color: #fff; text-align: left;
+  border: 1px solid rgba(174,98,255,.22);
+  background: linear-gradient(165deg, rgba(28,18,56,.72), rgba(8,10,28,.92));
+  box-shadow: 0 12px 32px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.tst-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.tst-person { display: flex; align-items: center; gap: 12px; }
+.tst-avatar { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.tst-card--blue .tst-avatar { background: rgba(59,130,246,.22); color: #93c5fd; border: 1px solid rgba(59,130,246,.35); }
+.tst-card--emerald .tst-avatar { background: rgba(16,185,129,.2); color: #6ee7b7; border: 1px solid rgba(16,185,129,.35); }
+.tst-card--orange .tst-avatar { background: rgba(249,115,22,.2); color: #fdba74; border: 1px solid rgba(249,115,22,.35); }
+.tst-card--pink .tst-avatar { background: rgba(236,72,153,.2); color: #f9a8d4; border: 1px solid rgba(236,72,153,.35); }
+.tst-card--cyan .tst-avatar { background: rgba(6,182,212,.2); color: #67e8f9; border: 1px solid rgba(6,182,212,.35); }
+.tst-card--violet .tst-avatar { background: rgba(174,98,255,.22); color: #d8b4fe; border: 1px solid rgba(174,98,255,.4); }
+.tst-name { font-size: 14px; font-weight: 700; line-height: 1.2; }
+.tst-handle { margin-top: 2px; font-size: 12px; color: rgba(255,255,255,.45); line-height: 1.2; }
+.tst-x { color: rgba(255,255,255,.28); font-size: 20px; line-height: 1; }
+.tst-quote { margin-top: 16px; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.52; }
+.tst-mark { margin-top: 10px; color: rgba(174,98,255,.35); font-size: 22px; line-height: 1; text-align: right; }
+
+/* Starfield background */
+.tst-sky { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.tst-nebula {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(900px 600px at 12% 4%, rgba(70,60,140,.14), transparent 62%),
+    radial-gradient(1000px 750px at 52% 45%, rgba(40,130,85,.07), transparent 68%),
+    radial-gradient(850px 650px at 6% 90%, rgba(150,35,55,.12), transparent 62%),
+    radial-gradient(850px 650px at 60% 95%, rgba(140,30,50,.1), transparent 62%),
+    radial-gradient(700px 550px at 95% 60%, rgba(60,50,110,.08), transparent 60%),
+    var(--ink);
+}
+.tst-stars { position: absolute; top: 0; left: 0; width: 2px; height: 2px; border-radius: 50%; background: transparent; animation: tst-drift linear infinite; }
+.tst-stars--small { opacity: .4; animation-duration: 150s; }
+.tst-stars--medium { opacity: .55; animation-duration: 100s; }
+.tst-stars--large { opacity: .7; animation-duration: 65s; }
+@keyframes tst-drift { 50% { transform: translate(1.2vw, -50vh); } to { transform: translateY(-100vh); } }
+.tst-sparkle { position: absolute; clip-path: polygon(50% 0%, 64% 36%, 100% 50%, 64% 64%, 50% 100%, 36% 64%, 0% 50%, 36% 36%); animation: tst-twinkle 4.5s ease-in-out infinite; }
+.tst-sparkle--a { top: 5%; left: 12%; width: 14px; height: 14px; background: #ff5cb8; filter: drop-shadow(0 0 6px rgba(255,92,184,.85)); }
+.tst-sparkle--b { top: 62%; left: 92%; width: 9px; height: 9px; background: #ff5cb8; filter: drop-shadow(0 0 6px rgba(255,92,184,.85)); animation-delay: 1.4s; }
+.tst-sparkle--c { top: 81%; left: 18%; width: 10px; height: 10px; background: #2ecc71; filter: drop-shadow(0 0 6px rgba(46,204,113,.85)); animation-delay: 2.6s; }
+.tst-sparkle--d { top: 40%; left: 6%; width: 7px; height: 7px; background: #ff5cb8; filter: drop-shadow(0 0 5px rgba(255,92,184,.8)); animation-delay: 3.3s; }
+@keyframes tst-twinkle { 0%, to { opacity: .35; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.15); } }
+.tst-shoot { position: absolute; height: 2px; border-radius: 999px; opacity: 0; }
+.tst-shoot--a { top: 14%; left: 60%; width: 130px; background: linear-gradient(90deg, transparent, rgba(120,255,160,.9) 70%, #d6ffe4); animation: tst-shoot-a 9s ease-in 1s infinite; }
+.tst-shoot--b { top: 6%; left: 32%; width: 100px; background: linear-gradient(90deg, transparent, rgba(255,140,200,.85) 70%, #ffe1f2); animation: tst-shoot-b 10.5s ease-in 5.2s infinite; }
+@keyframes tst-shoot-a { 0%, 85% { opacity: 0; transform: translate(40px, -50px) rotate(152deg); } 90% { opacity: 1; } to { opacity: 0; transform: translate(-70px, 130px) rotate(152deg); } }
+@keyframes tst-shoot-b { 0%, 85% { opacity: 0; transform: translate(30px, -40px) rotate(156deg); } 90% { opacity: 1; } to { opacity: 0; transform: translate(-55px, 100px) rotate(156deg); } }
+
+@media (max-width: 900px) {
+  .tst { padding: 72px 0 56px; }
+  .tst-card { flex-basis: 300px; width: 300px; }
+  .tst-track { animation-duration: 36s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tst-track, .tst-stars, .tst-sparkle, .tst-shoot { animation: none; }
+  .tst-row { overflow-x: auto; }
+}
