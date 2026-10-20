@@ -596,7 +596,7 @@ strong { color: var(--white); font-weight: 600; }
 
 /* ===== Testimonials (ported from the React funnel) ===== */
 .foot-early { padding-top: 8px; }
-.tst { position: relative; overflow: hidden; padding: 96px 0 72px; }
+.tst { position: relative; overflow: hidden; padding: 96px 0 72px; background: var(--ink); }
 .tst-head { position: relative; z-index: 1; text-align: center; margin-bottom: 36px; }
 .tst-head .lede { max-width: 640px; margin-left: auto; margin-right: auto; }
 .tst-marquee { position: relative; z-index: 1; display: grid; gap: 14px; }
@@ -630,41 +630,12 @@ strong { color: var(--white); font-weight: 600; }
 .tst-quote { margin-top: 16px; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.52; }
 .tst-mark { margin-top: 10px; color: rgba(174,98,255,.35); font-size: 22px; line-height: 1; text-align: right; }
 
-/* Starfield background */
-.tst-sky { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
-.tst-nebula {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(900px 600px at 12% 4%, rgba(70,60,140,.14), transparent 62%),
-    radial-gradient(1000px 750px at 52% 45%, rgba(40,130,85,.07), transparent 68%),
-    radial-gradient(850px 650px at 6% 90%, rgba(150,35,55,.12), transparent 62%),
-    radial-gradient(850px 650px at 60% 95%, rgba(140,30,50,.1), transparent 62%),
-    radial-gradient(700px 550px at 95% 60%, rgba(60,50,110,.08), transparent 60%),
-    var(--ink);
-}
-.tst-stars { position: absolute; top: 0; left: 0; width: 2px; height: 2px; border-radius: 50%; background: transparent; animation: tst-drift linear infinite; }
-.tst-stars--small { opacity: .4; animation-duration: 150s; }
-.tst-stars--medium { opacity: .55; animation-duration: 100s; }
-.tst-stars--large { opacity: .7; animation-duration: 65s; }
-@keyframes tst-drift { 50% { transform: translate(1.2vw, -50vh); } to { transform: translateY(-100vh); } }
-.tst-sparkle { position: absolute; clip-path: polygon(50% 0%, 64% 36%, 100% 50%, 64% 64%, 50% 100%, 36% 64%, 0% 50%, 36% 36%); animation: tst-twinkle 4.5s ease-in-out infinite; }
-.tst-sparkle--a { top: 5%; left: 12%; width: 14px; height: 14px; background: #ff5cb8; filter: drop-shadow(0 0 6px rgba(255,92,184,.85)); }
-.tst-sparkle--b { top: 62%; left: 92%; width: 9px; height: 9px; background: #ff5cb8; filter: drop-shadow(0 0 6px rgba(255,92,184,.85)); animation-delay: 1.4s; }
-.tst-sparkle--c { top: 81%; left: 18%; width: 10px; height: 10px; background: #2ecc71; filter: drop-shadow(0 0 6px rgba(46,204,113,.85)); animation-delay: 2.6s; }
-.tst-sparkle--d { top: 40%; left: 6%; width: 7px; height: 7px; background: #ff5cb8; filter: drop-shadow(0 0 5px rgba(255,92,184,.8)); animation-delay: 3.3s; }
-@keyframes tst-twinkle { 0%, to { opacity: .35; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.15); } }
-.tst-shoot { position: absolute; height: 2px; border-radius: 999px; opacity: 0; }
-.tst-shoot--a { top: 14%; left: 60%; width: 130px; background: linear-gradient(90deg, transparent, rgba(120,255,160,.9) 70%, #d6ffe4); animation: tst-shoot-a 9s ease-in 1s infinite; }
-.tst-shoot--b { top: 6%; left: 32%; width: 100px; background: linear-gradient(90deg, transparent, rgba(255,140,200,.85) 70%, #ffe1f2); animation: tst-shoot-b 10.5s ease-in 5.2s infinite; }
-@keyframes tst-shoot-a { 0%, 85% { opacity: 0; transform: translate(40px, -50px) rotate(152deg); } 90% { opacity: 1; } to { opacity: 0; transform: translate(-70px, 130px) rotate(152deg); } }
-@keyframes tst-shoot-b { 0%, 85% { opacity: 0; transform: translate(30px, -40px) rotate(156deg); } 90% { opacity: 1; } to { opacity: 0; transform: translate(-55px, 100px) rotate(156deg); } }
-
 @media (max-width: 900px) {
   .tst { padding: 72px 0 56px; }
   .tst-card { flex-basis: 300px; width: 300px; }
   .tst-track { animation-duration: 36s; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .tst-track, .tst-stars, .tst-sparkle, .tst-shoot { animation: none; }
+  .tst-track { animation: none; }
   .tst-row { overflow-x: auto; }
 }

@@ -368,7 +368,7 @@
   });
 })();
 
-// ---- Testimonials: repeat each row so the marquee loops seamlessly, and scatter the stars ----
+// ---- Testimonials: repeat each row so the marquee loops seamlessly ----
 (() => {
   const SEGMENTS = 6;
   document.querySelectorAll(".tst-track").forEach((track) => {
@@ -380,10 +380,5 @@
         track.append(copy);
       });
     }
-  });
-  document.querySelectorAll(".tst-stars").forEach((layer) => {
-    const n = +layer.dataset.stars || 50, stars = [];
-    for (let i = 0; i < n; i++) stars.push(`#fff ${(Math.random() * 100).toFixed(2)}vw ${(Math.random() * 196).toFixed(2)}vh`);
-    layer.style.boxShadow = stars.join(", ");
   });
 })();
