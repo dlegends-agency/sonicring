@@ -22,16 +22,16 @@ const planMeta: Record<
   { description: string; featured?: boolean; amountCents: number }
 > = {
   starter: {
-    description: 'Best for getting your first AI team live.',
-    amountCents: 19900,
+    description: 'Get The Front Desk. Your first AI team, live.',
+    amountCents: 29900,
   },
   growth: {
-    description: 'Scale marketing, follow-up, and ops in one place.',
-    amountCents: 39900,
+    description: 'Connect The Engine. Marketing, follow-up and ops in one place.',
+    amountCents: 49900,
     featured: true,
   },
   pro: {
-    description: 'For teams that need power, access, and white label.',
+    description: 'Run At Greater Scale. Power, access and white label.',
     amountCents: 79900,
   },
 }

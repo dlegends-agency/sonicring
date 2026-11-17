@@ -14,18 +14,18 @@ const PLANS: Record<
 > = {
   starter: {
     name: "SonicRing Starter",
-    amountCents: 19900,
-    description: "1 business · 2 users · 5 AI employees",
+    amountCents: 29900,
+    description: "5 AI employees · 5,000 AI credits · 100 phone minutes",
   },
   growth: {
     name: "SonicRing Growth",
-    amountCents: 39900,
-    description: "3 businesses · 5 users · 10 AI employees",
+    amountCents: 49900,
+    description: "8 AI employees · 20,000 AI credits · 500 phone minutes",
   },
   pro: {
     name: "SonicRing Pro",
     amountCents: 79900,
-    description: "10 businesses · 15 users · 25 AI employees",
+    description: "10 AI employees · 75,000 AI credits · 2,000 phone minutes",
   },
 };
 

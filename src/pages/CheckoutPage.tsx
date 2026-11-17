@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useSearchParams } from 'react-router-dom'
 import {
   checkoutPlans,
@@ -43,7 +43,9 @@ export function CheckoutPage() {
   const name = params.get('name') ?? ''
   const contactId = params.get('contact') ?? ''
 
-  const [selected, setSelected] = useState<CheckoutPlanId>('growth')
+  const planParam = getCheckoutPlan(params.get('plan'))?.id
+  const autostart = params.get('autostart') === '1' && Boolean(planParam)
+  const [selected, setSelected] = useState<CheckoutPlanId>(planParam ?? 'growth')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const { checkoutSettings } = useCheckoutAndGeneralSettings()
@@ -96,6 +98,16 @@ export function CheckoutPage() {
 
     window.location.assign(payload.url)
   }
+
+  // Coming from /plan with a plan already chosen: skip this step and open Stripe right away.
+  // If it fails, the page stays here with the error and the normal plan picker.
+  const autostarted = useRef(false)
+  useEffect(() => {
+    if (!autostart || autostarted.current) return
+    autostarted.current = true
+    void startCheckout()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autostart])
 
   return (
     <main className="checkout">
